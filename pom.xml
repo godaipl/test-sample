@@ -25,6 +25,7 @@
         <module>ts-repo</module>
         <module>ts-service</module>
         <module>ts-api</module>
+        <module>ts-web</module>
         <module>ts-main</module>
     </modules>
 
@@ -35,6 +36,12 @@
             <dependency>
                 <groupId>com.china.test.sample</groupId>
                 <artifactId>ts-main</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.china.test.sample</groupId>
+                <artifactId>ts-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
