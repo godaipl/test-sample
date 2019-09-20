@@ -16,7 +16,7 @@ public class BaseResp<T> {
     private T result;
 
     public static BaseResp<?> newBuilder() {
-        return new BaseResp();
+        return new BaseResp<>();
     }
 
     public BaseResp<T> setCodeAndMsg(String code, String msg) {
