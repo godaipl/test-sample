@@ -14,6 +14,7 @@ public class TsMainApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		log.info("test something");
 	}
 
 }

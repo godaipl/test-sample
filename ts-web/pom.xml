@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.china.test.sample</groupId>
-            <artifactId>ts-api</artifactId>
+            <artifactId>ts-controller</artifactId>
         </dependency>
     </dependencies>
 </project>

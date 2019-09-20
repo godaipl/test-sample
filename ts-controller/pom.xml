@@ -8,8 +8,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.china.test.sample</groupId>
-    <artifactId>ts-api</artifactId>
-    <name>ts-api</name>
+    <artifactId>ts-controller</artifactId>
+    <name>ts-controller</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

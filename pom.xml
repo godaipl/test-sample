@@ -21,10 +21,9 @@
     </properties>
 
     <modules>
-        <module>ts-entity</module>
-        <module>ts-repo</module>
+        <module>ts-dao</module>
         <module>ts-service</module>
-        <module>ts-api</module>
+        <module>ts-controller</module>
         <module>ts-web</module>
         <module>ts-main</module>
     </modules>
@@ -47,7 +46,7 @@
 
             <dependency>
                 <groupId>com.china.test.sample</groupId>
-                <artifactId>ts-api</artifactId>
+                <artifactId>ts-controller</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -59,13 +58,7 @@
 
             <dependency>
                 <groupId>com.china.test.sample</groupId>
-                <artifactId>ts-repo</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.china.test.sample</groupId>
-                <artifactId>ts-entity</artifactId>
+                <artifactId>ts-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.china.test.sample</groupId>
-            <artifactId>ts-repo</artifactId>
+            <artifactId>ts-dao</artifactId>
         </dependency>
     </dependencies>
 </project>
