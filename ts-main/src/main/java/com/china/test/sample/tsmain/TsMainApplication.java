@@ -1,4 +1,4 @@
-package com.china.test.sample;
+package com.china.test.sample.tsmain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author yandongjun
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.china.test.sample.tsmain")
 public class TsMainApplication {
 
     public static void main(String[] args) {
