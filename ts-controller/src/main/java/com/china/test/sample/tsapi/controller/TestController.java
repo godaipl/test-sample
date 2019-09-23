@@ -1,9 +1,7 @@
 package com.china.test.sample.tsapi.controller;
 
 import com.china.test.sample.tsapi.resp.BaseResp;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 这是一个测试controller
@@ -13,10 +11,131 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("test")
 public class TestController {
+    /**
+     * http://ip:port/ts/test/
+     * 
+     * @return
+     */
+    @RequestMapping("/")
+    public String get() {
+        return "单url";
+    }
 
-    // http://localhost:8889/ts/test/getSomething
-    @GetMapping("getSomething")
+    /**
+     * http://ip:port/ts/test/
+     * http://ip:port/ts/test/get
+     * http://ip:port/ts/test/get1
+     * http://ip:port/ts/test/get2
+     * 
+     * @return
+     */
+    @RequestMapping(path = { "get", "get1", "get2" })
+    public String get0() {
+        return "多url";
+    }
+
+    /**
+     * http://localhost:8889/ts/test/getValueById?id=1
+     * 
+     * @param testId
+     * @return
+     */
+    @RequestMapping(path = "getValueById")
+    public String getValueById(@RequestParam("id") String testId) {
+        return "如果参数名和参数名不一样，需要特殊标明，testId is " + testId;
+    }
+
+     /**
+     * http://localhost:8889/ts/test/getValueById2?testId=1
+     * 
+     * @param testId
+     * @return
+     */
+    @RequestMapping(path = "getValueById2")
+    public String getValueById2(@RequestParam String testId) {
+        return "如果说参数和变量名一样就不用写别名，testId is " + testId;
+    }
+
+    /**
+     * required 如果是true 表明这个参数必须带
+     * defaultValue 表示如果不传值，这个参数就是这个值
+     * http://localhost:8889/ts/test/getValueById3?id=1
+     * 
+     * @param testId
+     * @return
+     */
+    @RequestMapping(path = "getValueById3")
+    public String getValueById3(@RequestParam(value = "id", required = true, defaultValue = "-1") String testId) {
+        return "required defaultValue 的使用，testId is " + testId;
+    }
+
+    /**
+     * HTTP GET
+     * 
+     * @return
+     */
+    @RequestMapping(path = "methodGet", method = RequestMethod.GET)
+    public String methodGet() {
+        return "HTTP GET ";
+    }
+
+    /**
+     * HTTP POST
+     * 
+     * @return
+     */
+    @RequestMapping(path = "methodPost", method = RequestMethod.POST)
+    public String methodPost() {
+        return "HTTP POST ";
+    }
+
+    /**
+     * HTTP DELETE
+     * 
+     * @return
+     */
+    @RequestMapping(path = "methodDelete" , method = RequestMethod.DELETE)
+    public String methodDelete() {
+        return "HTTP DELETE ";
+    }
+
+    /**
+     * 常用的method有Get Post Delete等，具体的区别自行百度 http://ip:port/ts/test/getSomething
+     *
+     * @return
+     */
+    @RequestMapping(path = "getSomething", method = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE })
     public BaseResp<?> getSomething() {
         return BaseResp.newBuilder().setCodeAndMsg("200", "OK");
+    }
+
+    /**
+     * 这是一个Get接口，如果明确了method就直接写相应的Mapping http://ip:port/ts/test/getHelloWorld
+     *
+     * @return String 返回字符串结果
+     */
+    @GetMapping(path = "getHelloWorld")
+    public String getHelloWorld() {
+        return "HTTP GET";
+    }
+
+    /**
+     * 这是一个Post接口，如果明确了method就直接写相应的Mapping http://ip:port/ts/test/updateHelloWorld
+     *
+     * @return String 返回字符串结果
+     */
+    @PostMapping(path = "postHelloWorld")
+    public String postHelloWorld() {
+        return "HTTP POST";
+    }
+
+    /**
+     * 这是一个Post接口，如果明确了method就直接写相应的Mapping http://ip:port/ts/test/deleteHelloWorld
+     *
+     * @return
+     */
+    @DeleteMapping(path = "deleteHelloWorld")
+    public String deleteHelloWorld() {
+        return "HTTP DELETE";
     }
 }

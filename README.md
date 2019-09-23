@@ -7,6 +7,14 @@
         - [创建SpringBoot 2.0项目](#创建springboot-20项目)
         - [创建多模块](#创建多模块)
         - [项目启动](#项目启动)
+    - [第一个restful接口](#第一个restful接口)
+        - [定义一个restful接口](#定义一个restful接口)
+        - [RequestMapping基础用法](#requestmapping基础用法)
+        - [RequestMapping处理多个url](#requestmapping处理多个url)
+        - [RequestMapping中带参数](#requestmapping中带参数)
+        - [RequestMapping中的关键字required, defaultValue](#requestmapping中的关键字required-defaultvalue)
+        - [RequestMapping处理各种HTTP方法](#requestmapping处理各种http方法)
+    - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
 <!-- /TOC -->
@@ -82,6 +90,94 @@
 
 5. 启动项目
 ![创建项目16](./pics/项目搭建/创建项目16.png)
+
+## 第一个restful接口
+
+```text
+SpringBoot项目创建完成之后，可以简单的通过几个注解就完成一个restful接口的定义，我们一起来看一下
+```
+
+### 定义一个restful接口
+
+1. 如图，创建一个controller类，并实现一些基础的方法
+
+```text
+需要说明的是
+application.properties里配置项
+#系统名称
+server.servlet.context-path = /ts
+#sso系统服务地址
+server.port = 8889
+
+平常访问链接，需要
+http://ip:{server.port}/{server.servlet.context-path}/
+某个controller的外层path/方法path
+
+例：
+http://localhost:8889/ts/test/getSomething
+```
+
+![restful1](pics/第一个restful接口/restful1.png)
+2. 我们来尝试一下接口调用
+![restful2](pics/第一个restful接口/restful2.png)
+
+### RequestMapping基础用法
+
+```text
+感觉一下图例中的2个链接的结果我们不难发现，
+http://localhost:8889/ts/test是404没有定义
+http://localhost:8889/ts/test/ 可正常返回结果
+```
+
+![restful3](pics/第一个restful接口/restful3.png)
+
+### RequestMapping处理多个url
+
+```code
+    /**
+     * http://ip:port/ts/test/
+     * http://ip:port/ts/test/get
+     * http://ip:port/ts/test/get1
+     * http://ip:port/ts/test/get2
+     * 
+     * @return
+     */
+    @RequestMapping(path = { "get", "get1", "get2" })
+    public String get0() {
+        return "OK";
+    }
+```
+
+### RequestMapping中带参数
+
+![restful4](pics/第一个restful接口/restful4.png)
+
+### RequestMapping中的关键字required, defaultValue
+
+![restful5](pics/第一个restful接口/restful5.png)
+
+### RequestMapping处理各种HTTP方法
+
+```text
+常用的HTTP METHOD
+
+后面的method可省略，用GetMapping等代替
+```
+
+![restful6](pics/第一个restful接口/restful6.png)
+
+![restful6](pics/第一个restful接口/restful6.png)
+
+## 手动修改maven项目版本号
+
+```text
+1、修改版本
+　　mvn versions:set -DnewVersion=xxxx
+2、回滚版本，提交后不能回滚
+　　mvn versions:revert
+3、提交版本变更
+　　mvn versions:commit
+```
 
 ## 附录
 
