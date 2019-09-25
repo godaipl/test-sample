@@ -24,4 +24,11 @@ public class BaseResp<T> {
         this.msg = msg;
         return this;
     }
+
+    public BaseResp<T> setCodeAndMsg(String code, String msg, T result) {
+        this.code = code;
+        this.msg = msg;
+        this.result = result;
+        return this;
+    }
 }

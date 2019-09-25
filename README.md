@@ -14,6 +14,10 @@
         - [RequestMapping中带参数](#requestmapping中带参数)
         - [RequestMapping中的关键字required, defaultValue](#requestmapping中的关键字required-defaultvalue)
         - [RequestMapping处理各种HTTP方法](#requestmapping处理各种http方法)
+        - [RequestMapping通过url获取参数](#requestmapping通过url获取参数)
+        - [RequestMapping通过RequestBody来传递参数](#requestmapping通过requestbody来传递参数)
+        - [RequestMapping通过RequestBody来传递参数2](#requestmapping通过requestbody来传递参数2)
+        - [总结](#总结)
     - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
@@ -166,7 +170,65 @@ http://localhost:8889/ts/test/ 可正常返回结果
 
 ![restful6](pics/第一个restful接口/restful6.png)
 
-![restful6](pics/第一个restful接口/restful6.png)
+![restful7](pics/第一个restful接口/restful7.png)
+
+### RequestMapping通过url获取参数
+
+```text
+restful接口的精髓在于通过url来获取参数，如
+
+http://ip:port/ts/test/get/userinfo/1
+
+http://ip:port/ts/test/get/userinfo/{userId}
+
+```
+
+![restful8](pics/第一个restful接口/restful8.png)
+
+### RequestMapping通过RequestBody来传递参数
+
+```text
+restful接口可通过http的body来传递参数，如
+http://localhost:8889/ts/test/getMomoGifts
+```
+
+![restful9](pics/第一个restful接口/restful9.png)
+
+![restful10](pics/第一个restful接口/restful10.png)
+
+### RequestMapping通过RequestBody来传递参数2
+
+```text
+restful接口可通过http的body来传递参数，如
+http://localhost:8889/ts/test/getMomoGifts2
+
+这里与上面不一样的地方在于，上面直接将传入的json数据转成了map，我们这个方法将json数据转成一个对象
+```
+
+![restful11](pics/第一个restful接口/restful11.png)
+
+![restful12](pics/第一个restful接口/restful12.png)
+
+需要说明的是，json中的key值要与对象中的参数的名字一样才能被识别
+
+```json
+{
+    "userName":"yandongjun",
+    "age":18
+}
+```
+
+![restful13](pics/第一个restful接口/restful13.png)
+
+### 总结
+
+```text
+本章我们讲了如下内容
+1. http有哪些方法
+2. 同样的定义可以有不一样的写法，如method = post可替换成直接用PostMapping
+3. 可以用url来对参数进行传递
+4. RequestBody传递参数时，Key传要与对象中的属性名称一致才可以被识别
+```
 
 ## 手动修改maven项目版本号
 

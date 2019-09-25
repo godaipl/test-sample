@@ -1,7 +1,14 @@
 package com.china.test.sample.tsapi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.china.test.sample.tsapi.req.MomoGiftReq;
 import com.china.test.sample.tsapi.resp.BaseResp;
 import org.springframework.web.bind.annotation.*;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 这是一个测试controller
@@ -10,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("test")
+@Slf4j
 public class TestController {
     /**
      * http://ip:port/ts/test/
@@ -137,5 +145,57 @@ public class TestController {
     @DeleteMapping(path = "deleteHelloWorld")
     public String deleteHelloWorld() {
         return "HTTP DELETE";
+    }
+
+    /**
+     * 这是一个通过url来取参的restful api
+     * 
+     * @param map
+     * @return
+     */
+    @RequestMapping(path = "get/userInfo/{userId}")
+    // @RequestMapping(value = "/get/userInfo/{userId}")
+    @ResponseBody
+    public String getUserInfoById(@PathVariable(value = "userId") Integer userId) {
+        log.info("getUserInfoById userId is {}", userId);
+        return "OK";
+    }
+
+    /**
+     * 下面我们来讲一下body传参的方法
+     * 
+     * @param map 具体参数
+     * @return
+     */
+    @PostMapping(path = "getMomoGifts", consumes = "application/json")
+    @ResponseBody
+    public BaseResp getMomoGifts(@RequestBody Map<String, Object> map) {
+        log.info("getMomoGifts map is {}", map);
+        BaseResp baseResp = BaseResp.newBuilder().setCodeAndMsg("0", "OK");
+        List<Object> objects = new ArrayList<>();
+        objects.add("a");
+        objects.add("b");
+        objects.add("c");
+        baseResp.setResult(objects);
+        return baseResp;
+    }
+
+    /**
+     * 下面我们来讲一下body传参的方法2
+     * 
+     * @param MomoGiftReq 用一个对象来接收传入的json参数
+     * @return
+     */
+    @PostMapping(path = "getMomoGifts2", consumes = "application/json")
+    @ResponseBody
+    public BaseResp getMomoGifts2(@RequestBody MomoGiftReq momoGiftReq) {
+        log.info("getMomoGifts momoGiftReq is {}", momoGiftReq);
+        BaseResp baseResp = BaseResp.newBuilder().setCodeAndMsg("0", "OK");
+        List<Object> objects = new ArrayList<>();
+        objects.add("a");
+        objects.add("b");
+        objects.add("c");
+        baseResp.setResult(objects);
+        return baseResp;
     }
 }
