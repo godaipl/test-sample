@@ -18,6 +18,9 @@
         - [RequestMapping通过RequestBody来传递参数](#requestmapping通过requestbody来传递参数)
         - [RequestMapping通过RequestBody来传递参数2](#requestmapping通过requestbody来传递参数2)
         - [总结](#总结)
+    - [如何在Dao层与数据库打交道](#如何在dao层与数据库打交道)
+        - [使用SpringBoot自带的功能快捷的查询数据库数据](#使用springboot自带的功能快捷的查询数据库数据)
+        - [使用mybatis自动帮我生成数据库操作语句](#使用mybatis自动帮我生成数据库操作语句)
     - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
@@ -229,6 +232,36 @@ http://localhost:8889/ts/test/getMomoGifts2
 3. 可以用url来对参数进行传递
 4. RequestBody传递参数时，Key传要与对象中的属性名称一致才可以被识别
 ```
+
+## 如何在Dao层与数据库打交道
+
+```text
+本章节，我们地讲解
+1. 如何使用SpringBoot自带的功能快捷的查询数据库数据
+2. 如何使用mybatis框架帮我们自动生成数据库操作语句并完成查询
+3. 如何使用mybatis编写自定义的sql语句
+```
+
+### 使用SpringBoot自带的功能快捷的查询数据库数据
+
+1. 首先，我们要在parent模块的pom.xml文件中引入数据库相关的jar包
+
+```text
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.17</version>
+</dependency>
+```
+
+2. 在main模块的application.properties文件中，我们需要配置数据库相关的配置
+
+```text
+
+```
+
+
+### 使用mybatis自动帮我生成数据库操作语句
 
 ## 手动修改maven项目版本号
 
