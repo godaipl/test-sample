@@ -1,5 +1,6 @@
 package com.china.test.sample.tsmain;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author yandongjun
  */
-@SpringBootApplication(scanBasePackages = "com.china.test.sample")
+@SpringBootApplication
+@MapperScan("com.china.test.sample.tsdao")
 public class TsMainApplication {
 
     public static void main(String[] args) {

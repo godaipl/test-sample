@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 这里将数据库的信息放到配置文件中 -->
+    <properties resource="autogen/jdbc.properties"/>
+
+    <context id="test-sample" targetRuntime="MyBatis3">
+        <property name="mergeable" value="false"/>
+
+        <!-- 这里定义查询类的名字 -->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+
+        <!-- 这里定义一些插件 -->
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressMethodComments" value="true"/>
+            <property name="suppressXMLComments" value="true"/>
+            <property name="suppressClassComments" value="true"/>
+            <!--<property name="suppressAllComments" value="true" />-->
+        </commentGenerator>
+
+        <!-- database config -->
+        <jdbcConnection driverClass="${auto_mysql_driver}"
+                        connectionURL="${auto_mysql_url}"
+                        userId="${auto_mysql_username}"
+                        password="${auto_mysql_password}">
+        </jdbcConnection>
+        <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+        <!--                        connectionURL="jdbc:mysql://192.168.5.241:3306/test?useSSL=false"-->
+        <!--                        userId="root"-->
+        <!--                        password="dashu0701">-->
+        <!--        </jdbcConnection>-->
+
+        <!-- 配置domain类的包名 -->
+        <javaModelGenerator targetPackage="com.china.test.sample.tsdao.tsdb.domain"
+                            targetProject="src/main/java/"><!-- src/generated/java -->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 配置mapper.xml文件的路径 -->
+        <sqlMapGenerator targetPackage="tsdb"
+                         targetProject="src/main/resources/sqlmap/"> <!-- src/generated/resources -->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 配置mapper类的包名 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.china.test.sample.tsdao.tsdb.mapper"
+                             targetProject="src/main/java/"> <!-- src/generated/java -->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 配置要自动生成的表 -->
+        <table schema="test" tableName="ts_test" domainObjectName="TsTest">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+    </context>
+
+</generatorConfiguration>
