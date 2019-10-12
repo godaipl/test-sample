@@ -242,7 +242,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 3. 如何使用mybatis编写自定义的sql语句
 ```
 
-### 使用SpringBoot自带的功能快捷的查询数据库数据
+### 使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)
 
 1. 首先，我们要在parent模块的pom.xml文件中引入数据库相关的jar包
 
@@ -257,11 +257,100 @@ http://localhost:8889/ts/test/getMomoGifts2
 2. 在main模块的application.properties文件中，我们需要配置数据库相关的配置
 
 ```text
-
 ```
 
 
-### 使用mybatis自动帮我生成数据库操作语句
+### 使用mybatis插件帮我们自动生成数据库操作语句
+
+在开始这一章节之前，我们假设已经完成了数据库的创建，表的创建
+
+#### 配置
+1. 首先，我们在dao层添加一些依赖,先在parent下的pom中进行定义，之后在dao模块进行引用(这里不作赘述，注意版本号)
+
+```text
+       <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>provided</scope>
+        </dependency>
+```
+
+2. 其次，我们得把Mybatis自动生成文件的插件引用进来
+
+```text
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>${mybatis-generator-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-driver.version}</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <!-- 大家注意，这里的目录其实就是dao模块下的resources目录 -->
+                    <configurationFile>src/main/resources/autogen/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+3. 接下来，我们添加插件需要使用到的文件 generatorConfig.xml,观察一下上面插件的引用，里面的configuration
+配置了这个文件的路径
+
+
+```text
+        <!-- 配置domain类的包名 -->
+        <javaModelGenerator targetPackage="com.china.test.sample.tsdao.tsdb.domain"
+                            targetProject="src/main/java/"><!-- src/generated/java -->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 配置mapper.xml文件的路径 -->
+        <sqlMapGenerator targetPackage="tsdb"
+                         targetProject="src/main/resources/sqlmap/"> <!-- src/generated/resources -->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 配置mapper类的包名 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.china.test.sample.tsdao.tsdb.mapper"
+                             targetProject="src/main/java/"> <!-- src/generated/java -->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 配置要自动生成的表, 后面的domainObjectName就是生成的java类的名称 -->
+        <table schema="test" tableName="ts_test" domainObjectName="TsTest">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+```
+
+4. 开始生成文件
+
+```text
+4.1 数据库建表，可以使用init.sql文件中的建表语句，也可以使用自己自定义的建表语句
+4.2 
+```
+
+#### 使用
+1. 
 
 ## 手动修改maven项目版本号
 

@@ -29,7 +29,7 @@
             <!--<property name="suppressAllComments" value="true" />-->
         </commentGenerator>
 
-        <!-- database config -->
+        <!-- database config 数据库配置，可以不用上面的jdbc.properties,直接用下面的方式直接配置 -->
         <jdbcConnection driverClass="${auto_mysql_driver}"
                         connectionURL="${auto_mysql_url}"
                         userId="${auto_mysql_username}"
@@ -60,7 +60,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!-- 配置要自动生成的表 -->
+        <!-- 配置要自动生成的表, 后面的domainObjectName就是生成的java类的名称 -->
         <table schema="test" tableName="ts_test" domainObjectName="TsTest">
             <property name="useActualColumnNames" value="true"/>
         </table>

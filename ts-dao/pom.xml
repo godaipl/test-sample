@@ -64,6 +64,7 @@
                 </dependencies>
 
                 <configuration>
+                    <!-- 大家注意，这里的目录其实就是dao模块下的resources目录 -->
                     <configurationFile>src/main/resources/autogen/generatorConfig.xml</configurationFile>
                     <overwrite>true</overwrite>
                 </configuration>
