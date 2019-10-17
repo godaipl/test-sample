@@ -19,8 +19,10 @@
         - [RequestMapping通过RequestBody来传递参数2](#requestmapping通过requestbody来传递参数2)
         - [总结](#总结)
     - [如何在Dao层与数据库打交道](#如何在dao层与数据库打交道)
-        - [使用SpringBoot自带的功能快捷的查询数据库数据](#使用springboot自带的功能快捷的查询数据库数据)
-        - [使用mybatis自动帮我生成数据库操作语句](#使用mybatis自动帮我生成数据库操作语句)
+        - [使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)](#使用springboot自带的功能快捷的查询数据库数据未完成先不看)
+        - [使用mybatis插件帮我们自动生成数据库操作语句](#使用mybatis插件帮我们自动生成数据库操作语句)
+            - [配置](#配置)
+            - [使用](#使用)
     - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
@@ -244,7 +246,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 
 ### 使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)
 
-1. 首先，我们要在parent模块的pom.xml文件中引入数据库相关的jar包
+1.首先，我们要在parent模块的pom.xml文件中引入数据库相关的jar包
 
 ```text
 <dependency>
@@ -254,18 +256,18 @@ http://localhost:8889/ts/test/getMomoGifts2
 </dependency>
 ```
 
-2. 在main模块的application.properties文件中，我们需要配置数据库相关的配置
+2.在main模块的application.properties文件中，我们需要配置数据库相关的配置
 
 ```text
 ```
-
 
 ### 使用mybatis插件帮我们自动生成数据库操作语句
 
 在开始这一章节之前，我们假设已经完成了数据库的创建，表的创建
 
 #### 配置
-1. 首先，我们在dao层添加一些依赖,先在parent下的pom中进行定义，之后在dao模块进行引用(这里不作赘述，注意版本号)
+
+1.首先，我们在dao层添加一些依赖,先在parent下的pom中进行定义，之后在dao模块进行引用(这里不作赘述，注意版本号)
 
 ```text
        <dependency>
@@ -285,7 +287,7 @@ http://localhost:8889/ts/test/getMomoGifts2
         </dependency>
 ```
 
-2. 其次，我们得把Mybatis自动生成文件的插件引用进来
+2.其次，我们得把Mybatis自动生成文件的插件引用进来
 
 ```text
     <build>
@@ -312,9 +314,8 @@ http://localhost:8889/ts/test/getMomoGifts2
     </build>
 ```
 
-3. 接下来，我们添加插件需要使用到的文件 generatorConfig.xml,观察一下上面插件的引用，里面的configuration
+3.接下来，我们添加插件需要使用到的文件 generatorConfig.xml,观察一下上面插件的引用，里面的configuration
 配置了这个文件的路径
-
 
 ```text
         <!-- 配置domain类的包名 -->
@@ -342,15 +343,50 @@ http://localhost:8889/ts/test/getMomoGifts2
         </table>
 ```
 
-4. 开始生成文件
+4.开始生成文件
 
 ```text
 4.1 数据库建表，可以使用init.sql文件中的建表语句，也可以使用自己自定义的建表语句
-4.2 
+4.2 使用如下方式生成文件(需要在dao模块的根目录下，就是有pom.xml文件的目录下)
+mvn mybatis-generator:generate
 ```
 
+![mybatis](pics/daomybatis插件使用/1.png)
+
+```text
+也可以使用idea自带的插件执行, 如下图所示
+```
+
+![mybatis](pics/daomybatis插件使用/2.png)
+
 #### 使用
-1. 
+
+1.先确定自动生成的文件在哪
+
+```text
+我们在生成文件之后，大家可以在这3个目录下看到相应的文件
+domain类目录
+src/main/java/
+com.china.test.sample.tsdao.tsdb.domain
+
+mapper类目录
+src/main/java/
+com.china.test.sample.tsdao.tsdb.mapper
+
+mapper.xml文件目录
+src/main/resources/sqlmap/tsdb
+
+如下图
+```
+
+![mybatis](pics/daomybatis插件使用/4.png)
+![mybatis](pics/daomybatis插件使用/3.png)
+
+2.如何让springboot项目知道这3种文件在哪
+
+```text
+
+```
 
 ## 手动修改maven项目版本号
 
