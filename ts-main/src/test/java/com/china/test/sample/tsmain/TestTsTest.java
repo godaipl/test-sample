@@ -6,6 +6,7 @@ import com.china.test.sample.tsdao.tsdb.mapper.TsTestMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,11 +19,17 @@ public class TestTsTest extends BaseTest {
     TsTestMapper tsTestMapper;
 
     @Test
-    public void testGetTsTestList() {
+    @Transactional
+    public void testGetTsTestList() throws Exception {
         // 首先创建查询条件
         TsTestCriteria tsTestCriteria = new TsTestCriteria();
         tsTestCriteria.createCriteria().andIdEqualTo(1);
         List<TsTest> tsTestList = tsTestMapper.selectByExample(tsTestCriteria);
-        log.info("tsTestList is {}", tsTestList);
+        tsTestMapper.updateByPrimaryKey(null);
+        tsTestMapper.updateByPrimaryKey(null);
+        tsTestMapper.updateByPrimaryKey(null);
+        tsTestMapper.updateByPrimaryKey(null);
+        throw new Exception("");
+//        log.info("tsTestList is {}", tsTestList);
     }
 }
