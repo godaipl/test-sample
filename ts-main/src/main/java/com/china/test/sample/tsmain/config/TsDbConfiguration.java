@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -29,7 +28,6 @@ public class TsDbConfiguration {
      */
     @Bean(name = "tsdbDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.tsdb")
-    @Primary
     public DataSource tsdbDataSource() {
         return DataSourceBuilder.create().build();
     }
@@ -42,7 +40,6 @@ public class TsDbConfiguration {
      * @throws Exception
      */
     @Bean(name = "tsdbSqlSessionFactory")
-    @Primary
     public SqlSessionFactory tsdbSqlSessionFactory(@Qualifier("tsdbDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
@@ -57,7 +54,6 @@ public class TsDbConfiguration {
      * @return DataSourceTransactionManager
      */
     @Bean(name = "tsdbTransactionManager")
-    @Primary
     public DataSourceTransactionManager tsdbDataSourceTransactionManager(@Qualifier("tsdbDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
@@ -69,7 +65,6 @@ public class TsDbConfiguration {
      * @return SqlSessionTemplate
      */
     @Bean(name = "tsdbSqlSessionTemplate")
-    @Primary
     public SqlSessionTemplate tsdbSqlSessionTemplate(@Qualifier("tsdbSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
