@@ -1,6 +1,5 @@
 package com.china.test.sample.tsmain.config;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,9 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
@@ -46,9 +43,10 @@ public class TsDbConfiguration {
     public SqlSessionFactory tsdbSqlSessionFactory(@Qualifier("tsdbDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:sqlmap/tsdb/*.xml"));
-        // 这下面人代码抄就行了
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        // 1 第一种，**代表任意目录，如tsdb/aaa.xml 如 tsdb/ext/aaaext.xml
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:sqlmap/tsdb/**/*.xml"));
+        // 这下面人代码抄就行了 2
+//        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 //        List<Resource> allResources = new ArrayList<>();
 //        allResources.addAll(Arrays.asList(resolver.getResources("classpath*:sqlmap/tsdb/*.xml")));
 //        // 把ext目录也加进来
@@ -58,14 +56,14 @@ public class TsDbConfiguration {
 //        Resource[] allResourceArray = allResources.toArray(str);
         // 上面的代码有点啰嗦
 
-        // 我们使用下面的
-        Resource[] resources = ArrayUtils.addAll(
-                resolver.getResources("classpath*:sqlmap/tsdb/*.xml"),
-                // 多一个自定义目录就加一个
-                resolver.getResources("classpath*:sqlmap/tsdb/ext/*.xml")
-        );
+        // 我们使用下面的 3
+//        Resource[] resources = ArrayUtils.addAll(
+//                resolver.getResources("classpath*:sqlmap/tsdb/*.xml"),
+//                // 多一个自定义目录就加一个
+//                resolver.getResources("classpath*:sqlmap/tsdb/ext/*.xml")
+//        );
 
-        bean.setMapperLocations(resources);
+//        bean.setMapperLocations(resources);
         return bean.getObject();
     }
 

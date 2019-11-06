@@ -8,6 +8,7 @@ import com.china.test.sample.tsdao.tsdb.domain.TsTest;
 import com.china.test.sample.tsdao.tsdb.domain.TsTestCriteria;
 import com.china.test.sample.tsdao.tsdb.mapper.TsTestMapper;
 
+import com.china.test.sample.tsdao.tsdb.mapper.ext.TsTestExtMapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,22 +19,28 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class TestTsTestWithJunit extends BaseJunitTest {
-    @Autowired
     /**
      * 这个是test数据库的表
      */
+    @Autowired
     TsTestMapper tsTestMapper;
 
-    @Autowired
     /**
      * 这个是test2数据库的表
      */
+    @Autowired
     TsTest2Mapper tsTest2Mapper;
 
-    @Test
+    /**
+     * 这是一个自定义的mapper
+     */
+    @Autowired
+    TsTestExtMapper tsTestExtMapper;
+
     /**
      * 测试获取表中的所有数据
      */
+    @Test
     public void testGetTsTestList() throws Exception {
         // 首先创建查询条件
         TsTestCriteria tsTestCriteria = new TsTestCriteria();
@@ -45,5 +52,15 @@ public class TestTsTestWithJunit extends BaseJunitTest {
 
         TsTest tsTest = tsTestMapper.selectByPrimaryKey(1);
         log.info("testGetTsTestList tsTest is {}", tsTest);
+    }
+
+    /**
+     * 测试自定义mapper
+     */
+    @Test
+    public void setTsTestExtMapper() {
+        tsTestExtMapper.selectById(1);
+        tsTestExtMapper.selectExtById(1);
+        tsTestExtMapper.selectTsTestById(1);
     }
 }

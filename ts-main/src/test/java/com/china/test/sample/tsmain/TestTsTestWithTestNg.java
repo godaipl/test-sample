@@ -8,6 +8,7 @@ import com.china.test.sample.tsdao.tsdb.domain.TsTest;
 import com.china.test.sample.tsdao.tsdb.domain.TsTestCriteria;
 import com.china.test.sample.tsdao.tsdb.mapper.TsTestMapper;
 
+import com.china.test.sample.tsdao.tsdb.mapper.ext.TsTestExtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -33,6 +34,8 @@ public class TestTsTestWithTestNg extends AbstractTestNGSpringContextTests {
      */
     TsTest2Mapper tsTest2Mapper;
 
+    TsTestExtMapper tsTestExtMapper;
+
     @Test
     /**
      * 测试获取表中的所有数据
@@ -48,5 +51,15 @@ public class TestTsTestWithTestNg extends AbstractTestNGSpringContextTests {
 
         TsTest tsTest = tsTestMapper.selectByPrimaryKey(1);
         log.info("testGetTsTestList tsTest is {}", tsTest);
+    }
+
+    /**
+     * 测试自定义mapper
+     */
+    @Test
+    public void setTsTestExtMapper() {
+        tsTestExtMapper.selectById(1);
+        tsTestExtMapper.selectExtById(1);
+        tsTestExtMapper.selectTsTestById(1);
     }
 }

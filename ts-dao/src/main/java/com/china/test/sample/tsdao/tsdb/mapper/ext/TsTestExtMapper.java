@@ -10,12 +10,13 @@ import com.china.test.sample.tsdao.tsdb.domain.ext.TsTestExt;
  */
 public interface TsTestExtMapper {
     /**
-     * 数一数id大于传入参数的数据有多少条
+     * 通过id获取对象
      *
      * @param id
      * @return
      */
-    int countSomethingGreaterThenId(int id);
+    TsTest selectTsTestById(int id);
+
 
     /**
      * 通过id获取对象
