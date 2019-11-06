@@ -24,9 +24,10 @@
             - [mybatis自动生成代码插件如何配置使用](#mybatis自动生成代码插件如何配置使用)
             - [如果将这些文件加载到springboot项目中进行使用](#如果将这些文件加载到springboot项目中进行使用)
     - [如何写一个页面将数据库的数据展示于页面中](#如何写一个页面将数据库的数据展示于页面中)
-        - [springboot添加页面支持](#springboot添加页面支持)
-            - [添加springboot页面模板依赖](#添加springboot页面模板依赖)
-        - [创建自己的第一个模板页面](#创建自己的第一个模板页面)
+        - [在pom.xml中引入thymeleaf等依赖](#在pomxml中引入thymeleaf等依赖)
+            - [关闭thymeleaf缓存](#关闭thymeleaf缓存)
+        - [创建第一个模板文件](#创建第一个模板文件)
+        - [访问我们的第一个模板页面](#访问我们的第一个模板页面)
     - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
@@ -461,9 +462,10 @@ TestTsTestWithJunit
 3 创建第一个模板文件
 ```
 
-### 在pom.xml中引入thymeleaf
+### 在pom.xml中引入thymeleaf等依赖
 
 ```text
+在web模块下的pom.xml文件中我们添加如下依赖
  <!-- 在web模块的pom.xml文件中，我们添加依赖 -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -472,6 +474,12 @@ TestTsTestWithJunit
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+在main目录下的pom.xml文件中我们添加如下依赖
+<dependency>
+    <groupId>com.china.test.sample</groupId>
+    <artifactId>ts-web</artifactId>
 </dependency>
 ```
 
@@ -494,9 +502,49 @@ TestTsTestWithJunit
 spring.thymeleaf.cache=false
 ```
 
-
 ### 创建第一个模板文件
 
+```text
+1. 我们的所有模板页面，默认目录在resources/templates/下
+我们在web模块的resources目录下创建templates目录
+
+2. 我们创建HelloWorld.html文件，内容如下
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+<h1 th:inline="text">Hello.v.2</h1>
+<p th:text="${HelloWorld}"></p>
+</body>
+</html>
+
+3. 我们在web模块下创建controller类
+@Controller
+@RequestMapping("/web")
+public class HelloWorldController {
+    /**
+     * 返回html模板.
+     */
+    @RequestMapping("/HelloWorld")
+    public String HelloWorld(Map<String, Object> map) {
+        // 这里的HelloWorld是与模板文件中的 ${HelloWorld} 对应的，最后会被这段话替换掉
+        map.put("HelloWorld", "这里的HelloWorld是与模板文件中的 ${HelloWorld} 对应的，最后会被这段话的替换掉");
+        // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
+        return "/HelloWorld";
+    }
+
+}
+```
+
+### 访问我们的第一个模板页面
+
+```text
+打开浏览器访问我们的第一个模板页面
+http://localhost:8889/ts/web/HelloWorld
+```
 
 
 ## 手动修改maven项目版本号
