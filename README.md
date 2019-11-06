@@ -23,11 +23,14 @@
         - [使用mybatis插件帮我们自动生成数据库操作语句](#使用mybatis插件帮我们自动生成数据库操作语句)
             - [mybatis自动生成代码插件如何配置使用](#mybatis自动生成代码插件如何配置使用)
             - [如果将这些文件加载到springboot项目中进行使用](#如果将这些文件加载到springboot项目中进行使用)
-    - [如何写一个页面将数据库的数据展示于页面中](#如何写一个页面将数据库的数据展示于页面中)
+    - [模板页面使用-第一个模板页面](#模板页面使用-第一个模板页面)
         - [在pom.xml中引入thymeleaf等依赖](#在pomxml中引入thymeleaf等依赖)
-            - [关闭thymeleaf缓存](#关闭thymeleaf缓存)
+        - [关闭thymeleaf缓存](#关闭thymeleaf缓存)
         - [创建第一个模板文件](#创建第一个模板文件)
         - [访问我们的第一个模板页面](#访问我们的第一个模板页面)
+    - [模板页面使用-数据库列表展示](#模板页面使用-数据库列表展示)
+        - [](#)
+    - [模板页面使用-ajax调用](#模板页面使用-ajax调用)
     - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
@@ -453,7 +456,7 @@ TestTsTestWithJunit
 
 ![mybatis](pics/数据库配置/4.png)
 
-## 如何写一个页面将数据库的数据展示于页面中
+## 模板页面使用-第一个模板页面
 
 ```text
 我们分三步
@@ -483,7 +486,7 @@ TestTsTestWithJunit
 </dependency>
 ```
 
-#### 关闭thymeleaf缓存
+### 关闭thymeleaf缓存
 
 ```text
 在application.properties配置文件中我们加入以下配置
@@ -546,6 +549,11 @@ public class HelloWorldController {
 http://localhost:8889/ts/web/HelloWorld
 ```
 
+## 模板页面使用-数据库列表展示
+
+### 
+
+## 模板页面使用-ajax调用
 
 ## 手动修改maven项目版本号
 
