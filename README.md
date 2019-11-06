@@ -385,8 +385,68 @@ src/main/resources/sqlmap/tsdb
 2.如何让springboot项目知道这3种文件在哪
 
 ```text
-
+我们直接在这里讲述多数据源的添加
+具体的配置大家可以查看以下2个类
+TsDbConfiguration
+Ts2DbConfiguration
 ```
+
+2.1 在application.properties配置文件中配置数据库信息，如下
+
+```text
+不难发现，每个数据库配置都有统一的前缀
+spring.datasource.tsdb
+spring.datasource.ts2db
+
+他们都有固定的4类属性(还有许多其它数据库属性，自行搜索添加)
+jdbc-url
+username
+password
+driver-class
+```
+
+```text
+ 数据库url
+spring.datasource.tsdb.jdbc-url=jdbc:mysql://192.168.5.241:3306/test?useSSL=false
+# 数据库用户名
+spring.datasource.tsdb.username=root
+# 数据库密码
+spring.datasource.tsdb.password=dashu0701
+# 数据库驱动
+spring.datasource.tsdb.driver-class-name=com.mysql.jdbc.Driver
+
+# 数据库url
+spring.datasource.ts2db.jdbc-url=jdbc:mysql://192.168.5.241:3306/test2?useSSL=false
+# 数据库用户名
+spring.datasource.ts2db.username=root
+# 数据库密码
+spring.datasource.ts2db.password=dashu0701
+# 数据库驱动
+spring.datasource.ts2db.driver-class-name=com.mysql.jdbc.Driver
+```
+
+2.2 我们回到TsDbConfiguration类
+
+2.2.1 我们在配置数据源的时候，将配置的前缀加上，数据源就配好了
+
+![mybatis](pics/数据库配置/1.png)
+
+2.2.2 之后我们要关注的是我们的mapper类的配置
+
+![mybatis](pics/数据库配置/2.png)
+
+2.2.3 然后看一下我们的mapper.xml的配置
+
+![mybatis](pics/数据库配置/3.png)
+
+2.2.4 到这我们写一个测试类来测试一下(测试类有2种写法，我们这拿junit方式来作讲解)
+
+```text
+查看以下类的实现
+TestTsTestWithJunit
+```
+
+![mybatis](pics/数据库配置/4.png)
 
 ## 手动修改maven项目版本号
 
