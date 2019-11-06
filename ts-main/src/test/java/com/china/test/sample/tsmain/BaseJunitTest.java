@@ -1,5 +1,6 @@
 package com.china.test.sample.tsmain;
 
+import com.china.test.sample.TsMainApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

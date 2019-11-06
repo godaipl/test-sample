@@ -17,9 +17,15 @@
     </properties>
 
     <dependencies>
+        <!-- 我们在web模块添加模板依赖 -->
         <dependency>
-            <groupId>com.china.test.sample</groupId>
-            <artifactId>ts-controller</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>

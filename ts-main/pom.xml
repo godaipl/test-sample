@@ -36,6 +36,12 @@
             <groupId>com.china.test.sample</groupId>
             <artifactId>ts-controller</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.china.test.sample</groupId>
+            <artifactId>ts-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

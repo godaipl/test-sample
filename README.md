@@ -21,8 +21,12 @@
     - [如何在Dao层与数据库打交道](#如何在dao层与数据库打交道)
         - [使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)](#使用springboot自带的功能快捷的查询数据库数据未完成先不看)
         - [使用mybatis插件帮我们自动生成数据库操作语句](#使用mybatis插件帮我们自动生成数据库操作语句)
-            - [配置](#配置)
-            - [使用](#使用)
+            - [mybatis自动生成代码插件如何配置使用](#mybatis自动生成代码插件如何配置使用)
+            - [如果将这些文件加载到springboot项目中进行使用](#如果将这些文件加载到springboot项目中进行使用)
+    - [如何写一个页面将数据库的数据展示于页面中](#如何写一个页面将数据库的数据展示于页面中)
+        - [springboot添加页面支持](#springboot添加页面支持)
+            - [添加springboot页面模板依赖](#添加springboot页面模板依赖)
+        - [创建自己的第一个模板页面](#创建自己的第一个模板页面)
     - [手动修改maven项目版本号](#手动修改maven项目版本号)
     - [附录](#附录)
 
@@ -265,7 +269,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 
 在开始这一章节之前，我们假设已经完成了数据库的创建，表的创建
 
-#### 配置
+#### mybatis自动生成代码插件如何配置使用
 
 1.首先，我们在dao层添加一些依赖,先在parent下的pom中进行定义，之后在dao模块进行引用(这里不作赘述，注意版本号)
 
@@ -359,7 +363,7 @@ mvn mybatis-generator:generate
 
 ![mybatis](pics/daomybatis插件使用/2.png)
 
-#### 使用
+#### 如果将这些文件加载到springboot项目中进行使用
 
 1.先确定自动生成的文件在哪
 
@@ -447,6 +451,53 @@ TestTsTestWithJunit
 ```
 
 ![mybatis](pics/数据库配置/4.png)
+
+## 如何写一个页面将数据库的数据展示于页面中
+
+```text
+我们分三步
+1 在pom.xml中引入thymeleaf
+2 关闭thymeleaf缓存
+3 创建第一个模板文件
+```
+
+### 在pom.xml中引入thymeleaf
+
+```text
+ <!-- 在web模块的pom.xml文件中，我们添加依赖 -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+#### 关闭thymeleaf缓存
+
+```text
+在application.properties配置文件中我们加入以下配置
+
+# 我们在开发阶段，把缓存去掉，要不我们的页面修改无法实时在我们的浏览器中生效
+########################################################
+###THYMELEAF (ThymeleafAutoConfiguration)
+########################################################
+#spring.thymeleaf.prefix=classpath:/templates/
+#spring.thymeleaf.suffix=.html
+#spring.thymeleaf.mode=HTML5
+#spring.thymeleaf.encoding=UTF-8
+# ;charset=<encoding> is added
+#spring.thymeleaf.content-type=text/html
+# set to false for hot refresh
+spring.thymeleaf.cache=false
+```
+
+
+### 创建第一个模板文件
+
+
 
 ## 手动修改maven项目版本号
 

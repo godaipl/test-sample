@@ -3,6 +3,7 @@ package com.china.test.sample.tsmain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.china.test.sample.TsMainApplication;
 import com.china.test.sample.tsdao.ts2db.mapper.TsTest2Mapper;
 import com.china.test.sample.tsdao.tsdb.domain.TsTest;
 import com.china.test.sample.tsdao.tsdb.domain.TsTestCriteria;
