@@ -21,7 +21,7 @@ public class TsTestController {
      */
     @RequestMapping("/ShowTestInfo")
     public String ShowTestInfo(Map<String, Object> map) {
-        List<TsTest> tsTests = getTsTests();
+        List<TsTest> tsTests = null;
         // model.addAttribute("tsTests", tsTests);
         map.put("tsTests", tsTests);
         // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
@@ -35,7 +35,7 @@ public class TsTestController {
      */
     @RequestMapping("/ShowTestInfo2")
     public String ShowTestInfo2(Model model) {
-        List<TsTest> tsTests = getTsTests();
+        List<TsTest> tsTests = null;
         model.addAttribute("tsTests", tsTests);
         // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
         return "ShowTestInfo";
@@ -56,26 +56,8 @@ public class TsTestController {
      */
     @RequestMapping("/ShowTestInfo3")
     public String ShowTestInfo3(Model model) {
-        List<TsTest> tsTests = getTsTests();
+        List<TsTest> tsTests = null;
         model.addAttribute("tsTests", tsTests);
         return "ShowTestInfo";
-    }
-
-    /**
-     * 写一个方法用于获取展示数据
-     * 
-     * @return
-     */
-    private List<TsTest> getTsTests() {
-        List<TsTest> tsTests = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            TsTest test = new TsTest();
-            test.setId(i);
-            test.setUserName("username" + i);
-            test.setAge(i + 10);
-            tsTests.add(test);
-        }
-
-        return tsTests;
     }
 }

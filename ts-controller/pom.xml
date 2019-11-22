@@ -31,5 +31,10 @@
             <groupId>com.china.test.sample</groupId>
             <artifactId>ts-service</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
     </dependencies>
 </project>

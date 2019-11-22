@@ -27,5 +27,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- 添加test模块 -->
+        <dependency>
+            <groupId>com.china.test.sample</groupId>
+            <artifactId>ts-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

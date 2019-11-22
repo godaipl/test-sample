@@ -8,6 +8,11 @@ import java.io.Serializable;
  * @author yandongjun
  */
 public class TsTestExt implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -779791355020110035L;
+    
     private Integer id;
     private String userName;
 

@@ -21,5 +21,10 @@
             <groupId>com.china.test.sample</groupId>
             <artifactId>ts-dao</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
     </dependencies>
 </project>
