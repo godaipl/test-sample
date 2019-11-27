@@ -1,4 +1,4 @@
-# Spring Boot Sample Project
+# 1. Spring Boot Sample Project
 
 <!-- TOC -->
 
@@ -42,13 +42,13 @@
 这是一个spring boot的示例项目，用以展示spring boot之美
 ```
 
-## 多模块spring boot2.0项目搭建
+## 1.1. 多模块spring boot2.0项目搭建
 
 ```text
 创建一个基于spring boot 2.0的多模块maven项目
 ```
 
-### 创建SpringBoot 2.0项目
+### 1.1.1. 创建SpringBoot 2.0项目
 
 1. 打开File -> New -> Project...
 ![创建项目1](./pics/项目搭建/创建项目1.png)
@@ -69,7 +69,7 @@
 
 ![创建项目6](./pics/项目搭建/创建项目6.png)
 
-### 创建多模块
+### 1.1.2. 创建多模块
 
 ```text
 接下来，我们开始创建其它模块，关于java模块怎么划分，
@@ -89,7 +89,7 @@
 6. 项目最终成型，按相同方法，创建controller, service, dao, common 等模块
 ![创建项目12](./pics/项目搭建/创建项目12.png)
 
-### 项目启动
+### 1.1.3. 项目启动
 
 ```text
 项目基础架构已经搭建完成了，之后就是将项目跑起来
@@ -110,13 +110,13 @@
 5. 启动项目
 ![创建项目16](./pics/项目搭建/创建项目16.png)
 
-## 第一个restful接口
+## 1.2. 第一个restful接口
 
 ```text
 SpringBoot项目创建完成之后，可以简单的通过几个注解就完成一个restful接口的定义，我们一起来看一下
 ```
 
-### 定义一个restful接口
+### 1.2.1. 定义一个restful接口
 
 1. 如图，创建一个controller类，并实现一些基础的方法
 
@@ -140,7 +140,7 @@ http://localhost:8889/ts/test/getSomething
 2. 我们来尝试一下接口调用
 ![restful2](pics/第一个restful接口/restful2.png)
 
-### RequestMapping基础用法
+### 1.2.2. RequestMapping基础用法
 
 ```text
 感觉一下图例中的2个链接的结果我们不难发现，
@@ -150,7 +150,7 @@ http://localhost:8889/ts/test/ 可正常返回结果
 
 ![restful3](pics/第一个restful接口/restful3.png)
 
-### RequestMapping处理多个url
+### 1.2.3. RequestMapping处理多个url
 
 ```code
     /**
@@ -167,15 +167,15 @@ http://localhost:8889/ts/test/ 可正常返回结果
     }
 ```
 
-### RequestMapping中带参数
+### 1.2.4. RequestMapping中带参数
 
 ![restful4](pics/第一个restful接口/restful4.png)
 
-### RequestMapping中的关键字required, defaultValue
+### 1.2.5. RequestMapping中的关键字required, defaultValue
 
 ![restful5](pics/第一个restful接口/restful5.png)
 
-### RequestMapping处理各种HTTP方法
+### 1.2.6. RequestMapping处理各种HTTP方法
 
 ```text
 常用的HTTP METHOD
@@ -187,7 +187,7 @@ http://localhost:8889/ts/test/ 可正常返回结果
 
 ![restful7](pics/第一个restful接口/restful7.png)
 
-### RequestMapping通过url获取参数
+### 1.2.7. RequestMapping通过url获取参数
 
 ```text
 restful接口的精髓在于通过url来获取参数，如
@@ -200,7 +200,7 @@ http://ip:port/ts/test/get/userinfo/{userId}
 
 ![restful8](pics/第一个restful接口/restful8.png)
 
-### RequestMapping通过RequestBody来传递参数
+### 1.2.8. RequestMapping通过RequestBody来传递参数
 
 ```text
 restful接口可通过http的body来传递参数，如
@@ -211,7 +211,7 @@ http://localhost:8889/ts/test/getMomoGifts
 
 ![restful10](pics/第一个restful接口/restful10.png)
 
-### RequestMapping通过RequestBody来传递参数2
+### 1.2.9. RequestMapping通过RequestBody来传递参数2
 
 ```text
 restful接口可通过http的body来传递参数，如
@@ -235,7 +235,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 
 ![restful13](pics/第一个restful接口/restful13.png)
 
-### 总结
+### 1.2.10. 总结
 
 ```text
 本章我们讲了如下内容
@@ -245,7 +245,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 4. RequestBody传递参数时，Key传要与对象中的属性名称一致才可以被识别
 ```
 
-## 如何在Dao层与数据库打交道
+## 1.3. 如何在Dao层与数据库打交道
 
 ```text
 本章节，我们地讲解
@@ -254,7 +254,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 3. 如何使用mybatis编写自定义的sql语句
 ```
 
-### 使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)
+### 1.3.1. 使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)
 
 1.首先，我们要在parent模块的pom.xml文件中引入数据库相关的jar包
 
@@ -271,11 +271,11 @@ http://localhost:8889/ts/test/getMomoGifts2
 ```text
 ```
 
-### 使用mybatis插件帮我们自动生成数据库操作语句
+### 1.3.2. 使用mybatis插件帮我们自动生成数据库操作语句
 
 在开始这一章节之前，我们假设已经完成了数据库的创建，表的创建
 
-#### mybatis自动生成代码插件如何配置使用
+#### 1.3.2.1. mybatis自动生成代码插件如何配置使用
 
 1.首先，我们在dao层添加一些依赖,先在parent下的pom中进行定义，之后在dao模块进行引用(这里不作赘述，注意版本号)
 
@@ -369,7 +369,7 @@ mvn mybatis-generator:generate
 
 ![mybatis](pics/daomybatis插件使用/2.png)
 
-#### 如果将这些文件加载到springboot项目中进行使用
+#### 1.3.2.2. 如果将这些文件加载到springboot项目中进行使用
 
 1.先确定自动生成的文件在哪
 
@@ -458,7 +458,7 @@ TestTsTestWithJunit
 
 ![mybatis](pics/数据库配置/4.png)
 
-## 模板页面使用-第一个模板页面
+## 1.4. 模板页面使用-第一个模板页面
 
 ```text
 我们分三步
@@ -467,7 +467,7 @@ TestTsTestWithJunit
 3 创建第一个模板文件
 ```
 
-### 在pom.xml中引入thymeleaf等依赖
+### 1.4.1. 在pom.xml中引入thymeleaf等依赖
 
 ```text
 在web模块下的pom.xml文件中我们添加如下依赖
@@ -488,7 +488,7 @@ TestTsTestWithJunit
 </dependency>
 ```
 
-### 关闭thymeleaf缓存
+### 1.4.2. 关闭thymeleaf缓存
 
 ```text
 在application.properties配置文件中我们加入以下配置
@@ -507,7 +507,7 @@ TestTsTestWithJunit
 spring.thymeleaf.cache=false
 ```
 
-### 创建第一个模板文件
+### 1.4.3. 创建第一个模板文件
 
 ```text
 1. 我们的所有模板页面，默认目录在resources/templates/下
@@ -544,29 +544,113 @@ public class HelloWorldController {
 }
 ```
 
-### 访问我们的第一个模板页面
+### 1.4.4. 访问我们的第一个模板页面
 
 ```text
 打开浏览器访问我们的第一个模板页面
 http://localhost:8889/ts/web/HelloWorld
 ```
 
-## 模板页面使用-数据库列表展示
-
-### 创建列表展示页面
+## 1.5. 模板页面使用-数据库列表展示
 
 ```text
-1. 在resources目录添加ShowTestInfo.html页面
-
+1. 在resources/templates目录中添加ShowTestInfo.html页面
+2. 在TsTestController中添加ShowTestInfo方法
 ```
 
-### 从数据库获取需要的数据
+### 1.5.1. 创建列表展示页面
 
-### 浏览列表展示页面
+```text
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用于展示信息的页面</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>用户名</td>
+        <td>年龄</td>
+    </tr>
+    <!--/*@thymesVar id="tsTestVOs" type="java.util.List"*/-->
+    <tr th:each="tsTestVO : ${tsTestVOs}">
+        <td th:text="${tsTestVO.name}"></td>
+        <td th:text="${tsTestVO.extraInfo}"></td>
+    </tr>
+</table>
+</body>
+</html>
+```
 
-## 模板页面使用-ajax调用
+### 1.5.2. 从数据库获取需要的数据
 
-## 手动修改maven项目版本号
+```text
+1 通过map形式传递页面数据
+    /**
+     * http://localhost:8889/ts/tsTest/ShowTestInfo
+     */
+    @RequestMapping("/ShowTestInfo")
+    public String ShowTestInfo(Map<String, Object> map) {
+        List<TsTestVO> tsTestVOs = tsTestService.getTsTestVOListForShowTestInfo();
+        map.put("tsTestVOs", tsTestVOs);
+        // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
+        return "ShowTestInfo";
+    }
+
+2 通过model形式传递页面数据
+    /**
+     * 使用model，最后SpringBoot会将model转成map(具体可以看接口Model的asMap方法)，和上面的方法一样
+     * <p>
+     * http://localhost:8889/ts/tsTest/ShowTestInfo2
+     */
+    @RequestMapping("/ShowTestInfo2")
+    public String ShowTestInfo2(Model model) {
+        List<TsTestVO> tsTestVOs = tsTestService.getTsTestVOListForShowTestInfo();
+        model.addAttribute("tsTestVOs", tsTestVOs);
+        // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
+        return "ShowTestInfo";
+    }
+
+3 从数据库中获取数据进行传递
+    /**
+     * 我们从数据库中获取数据并展示
+     * <p>
+     * 1. 使用service层的方法获取数据
+     * <p>
+     * 2. service层将获取的结果数据转换成前端展示类TsTestVO(view)
+     * <p>
+     * 3. service层方法调用dao层方法获取数据
+     * <p>
+     * 4. dao层其实就是我们的mapper类
+     * <p>
+     * http://localhost:8889/ts/tsTest/ShowTestInfo3
+     */
+    @RequestMapping("/ShowTestInfo3")
+    public String ShowTestInfo3(Model model) {
+        List<TsTestVO> tsTestVOs = tsTestService.getTsTestVOListForShowTestInfo3();
+        model.addAttribute("tsTestVOs", tsTestVOs);
+        // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
+        return "ShowTestInfo";
+    }
+```
+
+### 1.5.3. 浏览列表展示页面
+```text
+1. http://localhost:8889/ts/tsTest/ShowTestInfo
+2. http://localhost:8889/ts/tsTest/ShowTestInfo2
+```
+![mybatis](pics/模板页面/1.png)
+
+```text
+3. http://localhost:8889/ts/tsTest/ShowTestInfo3
+```
+![mybatis](pics/模板页面/2.png)
+
+
+## 1.6. 模板页面使用-ajax调用
+
+## 1.7. 手动修改maven项目版本号
 
 ```text
 1、修改版本
@@ -577,7 +661,7 @@ http://localhost:8889/ts/web/HelloWorld
 　　mvn versions:commit
 ```
 
-## 附录
+## 1.8. 附录
 
 [spring-boot 多模块项目搭建](https://symonlin.github.io/2019/01/15/springboot-1/)
 
