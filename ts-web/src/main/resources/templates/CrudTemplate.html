@@ -2,19 +2,34 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>用于展示信息的页面</title>
+    <title>用于演示增删改查基本操作</title>
 </head>
 <body>
+<div>
+    <a href="/ts/tsTest/addTemplate">添加数据</a>
+</div>
+
 <table border="1">
     <tr>
+        <td>ID</td>
         <td>用户名</td>
         <td>年龄</td>
+        <td>编辑</td>
+        <td>删除</td>
     </tr>
-    <!--/*@thymesVar id="tsTestVOs" type="java.util.List"*/-->
-    <tr th:each="tsTestVO : ${tsTestVOs}">
-        <td th:text="${tsTestVO.name}"></td>
-        <td th:text="${tsTestVO.extraInfo}"></td>
+    <tr th:if="${tsTests.size()} eq 0">
+        <td colspan="3">没有用户信息!</td>
+    </tr>
+    <!--/*@thymesVar id="tsTests" type="java.util.List"*/-->
+    <tr th:each="tsTests : ${tsTests}">
+        <td th:text="${tsTests.id}"></td>
+        <td th:text="${tsTests.userName}"></td>
+        <td th:text="${tsTests.age}"></td>
+        <td><a href="/ts/tsTest/editTemplate">编辑-TODO-0%</a></td>
+        <td><a href="/ts/tsTest/delTsTest/1">删除-TODO-50%</a></td>
     </tr>
 </table>
+
+<p th:if="${tips!=null}">提示：<span th:text="${tips}"></span></p>
 </body>
 </html>

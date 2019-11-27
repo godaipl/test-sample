@@ -551,14 +551,14 @@ public class HelloWorldController {
 http://localhost:8889/ts/web/HelloWorld
 ```
 
-## 1.5. 模板页面使用-数据库列表展示
+## 1.5. 模板页面使用-查询
 
 ```text
 1. 在resources/templates目录中添加ShowTestInfo.html页面
 2. 在TsTestController中添加ShowTestInfo方法
 ```
 
-### 1.5.1. 创建列表展示页面
+### 1.5.1. 创建查询展示页面
 
 ```text
 <!DOCTYPE html>
@@ -583,7 +583,7 @@ http://localhost:8889/ts/web/HelloWorld
 </html>
 ```
 
-### 1.5.2. 从数据库获取需要的数据
+### 1.5.2. 查询数据
 
 ```text
 1 通过map形式传递页面数据
@@ -648,7 +648,22 @@ http://localhost:8889/ts/web/HelloWorld
 ![mybatis](pics/模板页面/2.png)
 
 
-## 1.6. 模板页面使用-ajax调用
+## 1.6. 模板页面使用-增、删、改
+
+```text
+1. 创建具有增删改的页面
+2. 实现一个删除操作
+3. 实现一个添加操作
+4. 实现一个修改操作
+```
+
+### 1.6.1 创建一个具有增删改的页面
+
+### 1.6.2 实现一个删除操作
+
+### 1.6.3 实现一个添加操作
+
+### 1.6.4 实现一个修改操作
 
 ## 1.7. 手动修改maven项目版本号
 

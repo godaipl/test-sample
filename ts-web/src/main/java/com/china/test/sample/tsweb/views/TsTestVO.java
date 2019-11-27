@@ -4,16 +4,19 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
+ * 
+ * 理论上我们可以直接将数据库的类直接传递给前端， 我们推荐前端展示使用新类，解耦，具体的好处我们看下面
+ * 
  * @author yandongjun
  * @date 2019/11/12
- * 
- *       理论上我们可以直接将数据库的类直接传递给前端， 我们推荐前端展示使用新类，解耦，具体的好处我们看下面
  */
 public class TsTestVO implements Serializable {
     /**
      * 序列化id
      */
     private static final long serialVersionUID = -7049433696937121921L;
+
+    private Integer id;
 
     /**
      * 前端展示用户名称
@@ -25,13 +28,31 @@ public class TsTestVO implements Serializable {
      */
     private String extraInfo;
 
-
     public TsTestVO() {
     }
 
     public TsTestVO(String name, String extraInfo) {
         this.name = name;
         this.extraInfo = extraInfo;
+    }
+
+    public TsTestVO(Integer id, String name, String extraInfo) {
+        this.id = id;
+        this.name = name;
+        this.extraInfo = extraInfo;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public TsTestVO id(Integer id) {
+        this.id = id;
+        return this;
     }
 
     public String getName() {
@@ -78,10 +99,7 @@ public class TsTestVO implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
-            " name='" + getName() + "'" +
-            ", extraInfo='" + getExtraInfo() + "'" +
-            "}";
+        return "{" + " name='" + getName() + "'" + ", extraInfo='" + getExtraInfo() + "'" + "}";
     }
-    
+
 }

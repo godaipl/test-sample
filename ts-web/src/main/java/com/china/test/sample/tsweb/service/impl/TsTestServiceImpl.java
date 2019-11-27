@@ -29,6 +29,7 @@ public class TsTestServiceImpl implements TsTestService {
         List<TsTestVO> tsTestVOs = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             TsTestVO vo = new TsTestVO();
+            vo.setId(i);
             vo.setName(String.valueOf(i));
             vo.setExtraInfo("extraInfo is " + i);
             tsTestVOs.add(vo);
@@ -74,10 +75,40 @@ public class TsTestServiceImpl implements TsTestService {
      */
     private TsTestVO translateTsTestToTsTestVO(TsTest tsTest) {
         TsTestVO tsTestVO = new TsTestVO();
+        tsTestVO.setId(tsTest.getId());
         tsTestVO.setName(tsTest.getUserName());
         tsTestVO.setExtraInfo("extraInfo" + tsTest.getAge());
 
         return tsTestVO;
     }
+
+    @Override
+    public List<TsTest> getTsTestListForCrudTemplate() {
+        return tsTestMapper.selectByExample(null);
+    }
+
+    @Override
+    public Integer addTsTest(TsTest tsTest) {
+        try {
+            return tsTestMapper.insertSelective(tsTest);
+        } catch (Exception e) {
+            log.error("addTsTest error", e);
+        }
+
+        return 0;
+    }
+
+    @Override
+    public Integer delTsTest(Integer id) {
+        try {
+            return tsTestMapper.deleteByPrimaryKey(id);
+        } catch (Exception e) {
+            log.error("delTsTest error", e);
+        }
+
+        return 0;
+    }
+
+    
 
 }

@@ -1,11 +1,18 @@
 package com.china.test.sample.tsweb.controller;
 
+import com.china.test.sample.tsdao.tsdb.domain.TsTest;
 import com.china.test.sample.tsweb.service.TsTestService;
 import com.china.test.sample.tsweb.views.TsTestVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +22,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/tsTest")
+@Slf4j
 public class TsTestController {
     @Autowired
     TsTestService tsTestService;
@@ -62,5 +70,82 @@ public class TsTestController {
         model.addAttribute("tsTestVOs", tsTestVOs);
         // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
         return "ShowTestInfo";
+    }
+
+    /**
+     * 我们使用数据库查询作为本次增删改查的数据来源
+     * 
+     * http://localhost:8889/ts/tsTest/CrudTemplate
+     */
+    @RequestMapping("/CrudTemplate")
+    public String crudTemplate(Model model) {
+        List<TsTest> tsTests = tsTestService.getTsTestListForCrudTemplate();
+        model.addAttribute("tsTests", tsTests);
+        // 这里返回的值是templates目录下的文件名，不要带后文件后缀名
+        return "CrudTemplate";
+    }
+
+    /**
+     * 我们使用数据库查询作为本次增删改查的数据来源
+     * 
+     * http://localhost:8889/ts/tsTest/CrudTemplate
+     */
+    @RequestMapping("/addTemplate")
+    public ModelAndView addTemplate(Model model) {
+        model.addAttribute("tsTest", new TsTest());
+        model.addAttribute("title", "添加用户");
+        return new ModelAndView("AddTemplate", "tsTestModel", model);
+    }
+
+    /**
+     * 功能描述 添加用户
+     * 
+     * @author qqg
+     * @date
+     * @param * @param user
+     * @return
+     */
+    @PostMapping("/addTsTest")
+    public ModelAndView addTsTest(TsTest tsTest) {
+        log.info("addTsTest {}", tsTest);
+
+        String tips = null;
+        // 保存数据至数据库
+        if (tsTestService.addTsTest(tsTest) > 0) {
+            log.info("add success");
+            tips = "添加数据成功";
+        } else {
+            log.info("add fail");
+            tips = "添加数据失败";
+        }
+
+        // 保存完之后跳转至展示页面, 这里不用带项目名
+        return new ModelAndView("redirect:/tsTest/CrudTemplate", "tips", tips);
+    }
+
+    /**
+     * 功能描述 添加用户
+     * 
+     * @author qqg
+     * @date
+     * @param * @param user
+     * @return
+     */
+    @GetMapping("/delTsTest/{id}")
+    public ModelAndView delTsTest(@PathVariable("id") Integer id) {
+        log.info("delTsTest {}", id);
+
+        String tips = null;
+        // 保存数据至数据库
+        if (tsTestService.delTsTest(id) > 0) {
+            log.info("del success");
+            tips = "删除数据成功";
+        } else {
+            log.info("del fail");
+            tips = "删除数据失败";
+        }
+
+        // 保存完之后跳转至展示页面, 这里不用带项目名
+        return new ModelAndView("redirect:/tsTest/CrudTemplate", "tips", tips);
     }
 }
