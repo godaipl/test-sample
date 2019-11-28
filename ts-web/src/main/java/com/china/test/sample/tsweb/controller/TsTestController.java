@@ -88,9 +88,9 @@ public class TsTestController {
     /**
      * 我们使用数据库查询作为本次增删改查的数据来源
      * 
-     * http://localhost:8889/ts/tsTest/CrudTemplate
+     * http://localhost:8889/ts/tsTest/jumpToAddPage
      */
-    @RequestMapping("/addTemplate")
+    @RequestMapping("/jumpToAddPage")
     public ModelAndView addTemplate(Model model) {
         model.addAttribute("tsTest", new TsTest());
         model.addAttribute("title", "添加用户");
@@ -143,6 +143,54 @@ public class TsTestController {
         } else {
             log.info("del fail");
             tips = "删除数据失败";
+        }
+
+        // 保存完之后跳转至展示页面, 这里不用带项目名
+        return new ModelAndView("redirect:/tsTest/CrudTemplate", "tips", tips);
+    }
+
+    /**
+     * 功能描述 跳转至用户修改页面z
+     * 
+     * @author yandongjun
+     * @date
+     * @param * @param user
+     * @return
+     */
+    @GetMapping("/jumpToEditPage/{id}")
+    public ModelAndView jumpToEditPage(Model model, @PathVariable("id") Integer id) {
+        log.info("editTsTest {}", id);
+
+        // 编辑时，需要将原有的数据进行展示，我们也可能通过页面把数据传递到这来处理
+        TsTest tsTest = tsTestService.getTsTest(id);
+        // 推荐查询数据的数据
+        model.addAttribute("tsTest", tsTest);
+        model.addAttribute("title", "这是一个编辑展示页面");
+
+        // 保存完之后跳转至展示页面, 这里不用带项目名
+        return new ModelAndView("EditTemplate", "tsTestModel", model);
+    }
+
+       /**
+     * 功能描述 添加用户
+     * 
+     * @author qqg
+     * @date
+     * @param * @param user
+     * @return
+     */
+    @PostMapping("/editTsTest")
+    public ModelAndView editTsTest(TsTest tsTest) {
+        log.info("editTsTest {}", tsTest);
+
+        String tips = null;
+        // 保存数据至数据库
+        if (tsTestService.editTsTest(tsTest) > 0) {
+            log.info("edit success");
+            tips = "更新数据成功";
+        } else {
+            log.info("edit fail");
+            tips = "更新数据失败";
         }
 
         // 保存完之后跳转至展示页面, 这里不用带项目名

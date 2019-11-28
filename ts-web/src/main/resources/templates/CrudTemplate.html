@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    <a href="/ts/tsTest/addTemplate">添加数据</a>
+    <a href="/ts/tsTest/jumpToAddPage">添加数据</a>
 </div>
 
 <table border="1">
@@ -21,12 +21,14 @@
         <td colspan="3">没有用户信息!</td>
     </tr>
     <!--/*@thymesVar id="tsTests" type="java.util.List"*/-->
-    <tr th:each="tsTests : ${tsTests}">
-        <td th:text="${tsTests.id}"></td>
-        <td th:text="${tsTests.userName}"></td>
-        <td th:text="${tsTests.age}"></td>
-        <td><a href="/ts/tsTest/editTemplate">编辑-TODO-0%</a></td>
-        <td><a href="/ts/tsTest/delTsTest/1">删除-TODO-50%</a></td>
+    <tr th:each="tsTest : ${tsTests}">
+        <td th:text="${tsTest.id}"></td>
+        <td th:text="${tsTest.userName}"></td>
+        <td th:text="${tsTest.age}"></td>
+        <!-- 编辑和添加是一样的，先跳转至一个新页面，然后再提交，唯一的区别就是编辑的时候要把id传到下一个页面中 -->
+        <td><a th:href="@{'/tsTest/jumpToEditPage/'+${tsTest.id}}">编辑</a></td>
+        <!-- 这里是模板规定的写法, 这里删除不需要页面展示 ，所以直接调用删除接口 -->
+        <td><a th:href="@{'/tsTest/delTsTest/'+${tsTest.id}}">删除</a></td>
     </tr>
 </table>
 

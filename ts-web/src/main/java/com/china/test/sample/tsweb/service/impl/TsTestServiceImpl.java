@@ -109,6 +109,15 @@ public class TsTestServiceImpl implements TsTestService {
         return 0;
     }
 
-    
+    @Override
+    public TsTest getTsTest(Integer id) {
+        return tsTestMapper.selectByPrimaryKey(id);
+    }
 
+    @Override
+    public Integer editTsTest(TsTest tsTest) {
+        return tsTestMapper.updateByPrimaryKeySelective(tsTest);
+    }
+
+    
 }

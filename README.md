@@ -659,11 +659,61 @@ http://localhost:8889/ts/web/HelloWorld
 
 ### 1.6.1 创建一个具有增删改的页面
 
+```text
+具体查看CrudTemplate.html
+```
+
 ### 1.6.2 实现一个删除操作
+
+```text
+具体查看CrudTemplate.html
+
+以下是具体的代码，需要注意的是，删除需要将这条数据的id传递给后台
+
+<!-- 这里是模板规定的写法, 这里删除不需要页面展示 ，所以直接调用删除接口 -->
+<td><a th:href="@{'/tsTest/delTsTest/'+${tsTest.id}}">删除</a></td>
+```
 
 ### 1.6.3 实现一个添加操作
 
+```text
+具体查看
+CrudTemplate.html
+
+<a href="/ts/tsTest/jumpToAddPage">添加数据</a>
+
+AddTemplate.html
+
+一个提交，我们需要将所有数据通过一个form表单进行提交，具体的写法如下
+
+<form action="/ts/tsTest/addTsTest" method="post" th:object="${tsTestModel.tsTest}">
+        <td>
+            <!-- 隐藏属性 -->
+            <input type="hidden" name="id" th:value="*{id}">
+        </td>
+
+        <td>
+            名字:
+            <input type="text" name="userName" th:value="*{userName}">
+        </td>
+
+        <td>
+            年龄:
+            <input type="text" name="age" th:value="*{age}">
+        </td>
+        <br>
+        <input type="submit" value="提交">
+</form>
+
+```
+
 ### 1.6.4 实现一个修改操作
+
+```text
+与添加差不多，唯一的区别是
+1. 传递了数据的id给数据修改页面
+2. 修改页面会自动填充已有数据
+```
 
 ## 1.7. 手动修改maven项目版本号
 

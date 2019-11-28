@@ -36,12 +36,27 @@ public interface TsTestService {
      * 
      * @param tsTest
      */
-    Integer addTsTest(TsTest tsTest); 
-    
+    Integer addTsTest(TsTest tsTest);
+
+    /**
+     * 修改数据库中的对象
+     * 
+     * @param tsTest
+     */
+    Integer editTsTest(TsTest tsTest);
+
     /**
      * 添加对象至数据库中
      * 
      * @param tsTest
      */
-	Integer delTsTest(Integer id); 
+    Integer delTsTest(Integer id);
+
+    /**
+     * 根据id获取对象
+     * 
+     * @param id
+     * @return
+     */
+    TsTest getTsTest(Integer id);
 }
