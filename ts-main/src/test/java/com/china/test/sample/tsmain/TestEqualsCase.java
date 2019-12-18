@@ -6,7 +6,6 @@ import com.china.test.sample.tsmain.bo.TestEqualsSonBO;
 import com.china.test.sample.tsmain.bo.test.TestEquals;
 import com.china.test.sample.tsmain.bo.test.TestEquals2;
 import lombok.extern.slf4j.Slf4j;
-import net.minidev.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 

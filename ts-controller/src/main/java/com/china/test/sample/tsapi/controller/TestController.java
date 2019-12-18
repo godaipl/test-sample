@@ -188,7 +188,7 @@ public class TestController {
      */
     @PostMapping(path = "getMomoGifts2", consumes = "application/json")
     @ResponseBody
-    public BaseResp getMomoGifts2(@RequestBody MomoGiftReq momoGiftReq) {
+    public BaseResp<Object> getMomoGifts2(@RequestBody MomoGiftReq momoGiftReq) {
         log.info("getMomoGifts momoGiftReq is {}", momoGiftReq);
         BaseResp baseResp = BaseResp.newBuilder().setCodeAndMsg("0", "OK");
         List<Object> objects = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.china.test.sample.tsapi.resp;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -8,7 +10,12 @@ import lombok.Data;
  * @author yandongjun
  */
 @Data
-public class BaseResp<T> {
+public class BaseResp<T> implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2850475854211592729L;
+
     private String code;
 
     private String msg;
