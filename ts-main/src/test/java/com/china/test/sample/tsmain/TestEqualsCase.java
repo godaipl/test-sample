@@ -1,6 +1,7 @@
 package com.china.test.sample.tsmain;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.china.test.sample.tsmain.bo.TestEqualsFatherBO;
 import com.china.test.sample.tsmain.bo.TestEqualsSonBO;
 import com.china.test.sample.tsmain.bo.test.TestEquals;
@@ -10,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,23 +20,11 @@ import java.util.List;
 @Slf4j
 public class TestEqualsCase {
 
-    private static final String JSON_DEAULT = "{\n" +
-            "    \"A\": \"1\",\n" +
-            "    \"B\": \"2\",\n" +
-            "    \"C\": true,\n" +
-            "    \"testsEqualsSonBOs\": [\n" +
-            "        {\n" +
-            "            \"SonA\": \"son_a\",\n" +
-            "            \"SonB\": 1,\n" +
-            "            \n" +
-            "        },\n" +
-            "        {\n" +
-            "            \"SonA\": \"son_a2\",\n" +
-            "            \"SonB\": 2,\n" +
-            "            \"SonC\": false\n" +
-            "        }\n" +
-            "    ]\n" +
-            "}";
+    private static final String JSON_DEAULT = "{\n" + "    \"A\": \"1\",\n" + "    \"B\": \"2\",\n"
+            + "    \"C\": true,\n" + "    \"testsEqualsSonBOs\": [\n" + "        {\n"
+            + "            \"SonA\": \"son_a\",\n" + "            \"SonB\": 1,\n" + "            \n" + "        },\n"
+            + "        {\n" + "            \"SonA\": \"son_a2\",\n" + "            \"SonB\": 2,\n"
+            + "            \"SonC\": false\n" + "        }\n" + "    ]\n" + "}";
 
     @Test
     public void testTestEquals() {
@@ -44,7 +34,7 @@ public class TestEqualsCase {
         original.setB(3);
         original.setC(false);
 
-        // 把json内容，转成我要测试的类，我要测试的类里就只有a b c3个属性，其它数据不会转过来
+        // 把json内容，转成我要测试的类，我要测试的类(TestEquals)里就只有a b c3个属性，其它数据不会转过来
         TestEquals translate = JSON.parseObject(JSON_DEAULT, TestEquals.class);
 
         Assert.assertEquals(original, translate);
@@ -68,7 +58,7 @@ public class TestEqualsCase {
         original2.setTestsEqualsSonBOs(testEqualsSonBOs);
         // 到这里，测试的对象初始化好了
 
-        // 把json内容，转成我要测试的类，我要测试的类里就只有a b c3个属性，其它数据不会转过来
+        // 把json内容，转成我要测试的类，我要测试的类(TestEquals2)里就只有a b c testsEqualsSonBOs 4个属性，其它数据不会转过来
         TestEquals2 translate2 = JSON.parseObject(JSON_DEAULT, TestEquals2.class);
 
         Assert.assertEquals(original2, translate2);
@@ -92,4 +82,5 @@ public class TestEqualsCase {
         String jsonStr = JSON.toJSONString(translateTotalObject);
         log.info("jsonStr is {}", jsonStr);
     }
+
 }
