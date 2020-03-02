@@ -123,6 +123,14 @@ public class TsTestController {
         return new ModelAndView("redirect:/tsTest/CrudTemplate", "tips", tips);
     }
 
+    public void addTsTest() {
+        TsTest tsTest = new TsTest();
+        tsTest.setUserName("test");
+        tsTest.setAge(1);
+
+        tsTestService.addTsTest(tsTest);
+    }
+
     /**
      * 功能描述 添加用户
      * 

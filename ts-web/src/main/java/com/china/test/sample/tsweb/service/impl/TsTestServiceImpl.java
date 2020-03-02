@@ -1,6 +1,7 @@
 package com.china.test.sample.tsweb.service.impl;
 
 import com.china.test.sample.tsdao.tsdb.domain.TsTest;
+import com.china.test.sample.tsdao.tsdb.domain.TsTestCriteria;
 import com.china.test.sample.tsdao.tsdb.mapper.TsTestMapper;
 import com.china.test.sample.tsweb.service.TsTestService;
 import com.china.test.sample.tsweb.views.TsTestVO;
@@ -40,8 +41,10 @@ public class TsTestServiceImpl implements TsTestService {
     @Override
     public List<TsTestVO> getTsTestVOListForShowTestInfo3() {
         log.info("getTsTestVOList start");
+        TsTestCriteria tsTestCriteria = new TsTestCriteria();
+        tsTestCriteria.createCriteria().andIdEqualTo(1);
         // 查询结果
-        List<TsTest> tsTestList = tsTestMapper.selectByExample(null);
+        List<TsTest> tsTestList = tsTestMapper.selectByExample(tsTestCriteria);
 
         // 转化为前端类
         List<TsTestVO> tsTestVOs = translateTsTestsToTsTestVOs(tsTestList);
