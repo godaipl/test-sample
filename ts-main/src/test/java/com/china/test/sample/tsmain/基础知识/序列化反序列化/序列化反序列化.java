@@ -43,6 +43,7 @@ public class 序列化反序列化 {
                 new File(currentPath + "Person.txt")));
         Person person = (Person) ois.readObject();
         log.info("Person对象反序列化成功！{}", person);
+        ois.close();
     }
 
     /**
@@ -72,5 +73,6 @@ public class 序列化反序列化 {
                 new File(currentPath + "PersonNoUID.txt")));
         PersonNoUID personNoUID = (PersonNoUID) ois.readObject();
         log.info("PersonNoUID对象反序列化成功！{}", personNoUID);
+        ois.close();
     }
 }

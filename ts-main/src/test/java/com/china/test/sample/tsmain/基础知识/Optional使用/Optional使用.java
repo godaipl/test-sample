@@ -35,6 +35,8 @@ public class Optional使用 {
 
         List<OptionalPOJO> optionalPOJOs1 = listOptionalPOs1();
         List<OptionalPOJO> optionalPOJOs2 = listOptionalPOs2();
+        log.info("optionalPOJOs1 is {}", optionalPOJOs1);
+        log.info("optionalPOJOs2 is {}", optionalPOJOs2);
     }
 
     /**

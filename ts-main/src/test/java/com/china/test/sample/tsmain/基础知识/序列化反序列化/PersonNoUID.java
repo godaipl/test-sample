@@ -9,6 +9,11 @@ import java.io.Serializable;
  */
 @Data
 public class PersonNoUID implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4342241970829433264L;
+
     private String userName;
 
     private String address;

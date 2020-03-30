@@ -1,7 +1,6 @@
 package com.china.test.sample.tsmain;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.china.test.sample.tsmain.bo.TestEqualsFatherBO;
 import com.china.test.sample.tsmain.bo.TestEqualsSonBO;
 import com.china.test.sample.tsmain.bo.test.TestEquals;
@@ -11,7 +10,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class TestEqualsCase {
 
-    private static final String JSON_DEAULT = "{\n" + "    \"A\": \"1\",\n" + "    \"B\": \"2\",\n"
+    private static final String JSON_DEFAULT = "{\n" + "    \"A\": \"1\",\n" + "    \"B\": \"2\",\n"
             + "    \"C\": true,\n" + "    \"testsEqualsSonBOs\": [\n" + "        {\n"
             + "            \"SonA\": \"son_a\",\n" + "            \"SonB\": 1,\n" + "            \n" + "        },\n"
             + "        {\n" + "            \"SonA\": \"son_a2\",\n" + "            \"SonB\": 2,\n"
@@ -35,7 +33,7 @@ public class TestEqualsCase {
         original.setC(false);
 
         // 把json内容，转成我要测试的类，我要测试的类(TestEquals)里就只有a b c3个属性，其它数据不会转过来
-        TestEquals translate = JSON.parseObject(JSON_DEAULT, TestEquals.class);
+        TestEquals translate = JSON.parseObject(JSON_DEFAULT, TestEquals.class);
 
         Assert.assertEquals(original, translate);
         log.info("testTestEquals end");
@@ -59,7 +57,7 @@ public class TestEqualsCase {
         // 到这里，测试的对象初始化好了
 
         // 把json内容，转成我要测试的类，我要测试的类(TestEquals2)里就只有a b c testsEqualsSonBOs 4个属性，其它数据不会转过来
-        TestEquals2 translate2 = JSON.parseObject(JSON_DEAULT, TestEquals2.class);
+        TestEquals2 translate2 = JSON.parseObject(JSON_DEFAULT, TestEquals2.class);
 
         Assert.assertEquals(original2, translate2);
         log.info("testTestEquals2 end");
@@ -67,7 +65,7 @@ public class TestEqualsCase {
 
     @Test
     public void testTestEquals3() {
-        // TODO, 试试写一个Assert.assertEquals(original3, translate3) == ture 的用例
+        // 试试写一个Assert.assertEquals(original3, translate3) == true 的用例
     }
 
     /**
@@ -76,7 +74,7 @@ public class TestEqualsCase {
     @Test
     public void testTestEquals4() {
         // 把json内容转成一个完全的对象，每个属性都有值
-        TestEqualsFatherBO translateTotalObject = JSON.parseObject(JSON_DEAULT, TestEqualsFatherBO.class);
+        TestEqualsFatherBO translateTotalObject = JSON.parseObject(JSON_DEFAULT, TestEqualsFatherBO.class);
         log.info("translateTotalObject {}", translateTotalObject);
 
         String jsonStr = JSON.toJSONString(translateTotalObject);
