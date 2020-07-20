@@ -3,38 +3,42 @@
 <!-- TOC -->
 
 - [Spring Boot Sample Project](#spring-boot-sample-project)
-    - [多模块spring boot2.0项目搭建](#多模块spring-boot20项目搭建)
-        - [创建SpringBoot 2.0项目](#创建springboot-20项目)
-        - [创建多模块](#创建多模块)
-        - [项目启动](#项目启动)
-    - [第一个restful接口](#第一个restful接口)
-        - [定义一个restful接口](#定义一个restful接口)
-        - [RequestMapping基础用法](#requestmapping基础用法)
-        - [RequestMapping处理多个url](#requestmapping处理多个url)
-        - [RequestMapping中带参数](#requestmapping中带参数)
-        - [RequestMapping中的关键字required, defaultValue](#requestmapping中的关键字required-defaultvalue)
-        - [RequestMapping处理各种HTTP方法](#requestmapping处理各种http方法)
-        - [RequestMapping通过url获取参数](#requestmapping通过url获取参数)
-        - [RequestMapping通过RequestBody来传递参数](#requestmapping通过requestbody来传递参数)
-        - [RequestMapping通过RequestBody来传递参数2](#requestmapping通过requestbody来传递参数2)
-        - [总结](#总结)
-    - [如何在Dao层与数据库打交道](#如何在dao层与数据库打交道)
-        - [使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)](#使用springboot自带的功能快捷的查询数据库数据未完成先不看)
-        - [使用mybatis插件帮我们自动生成数据库操作语句](#使用mybatis插件帮我们自动生成数据库操作语句)
-            - [mybatis自动生成代码插件如何配置使用](#mybatis自动生成代码插件如何配置使用)
-            - [如果将这些文件加载到springboot项目中进行使用](#如果将这些文件加载到springboot项目中进行使用)
-    - [模板页面使用-第一个模板页面](#模板页面使用-第一个模板页面)
-        - [在pom.xml中引入thymeleaf等依赖](#在pomxml中引入thymeleaf等依赖)
-        - [关闭thymeleaf缓存](#关闭thymeleaf缓存)
-        - [创建第一个模板文件](#创建第一个模板文件)
-        - [访问我们的第一个模板页面](#访问我们的第一个模板页面)
-    - [模板页面使用-数据库列表展示](#模板页面使用-数据库列表展示)
-        - [创建列表展示页面](#创建列表展示页面)
-        - [从数据库获取需要的数据](#从数据库获取需要的数据)
-        - [浏览列表展示页面](#浏览列表展示页面)
-    - [模板页面使用-ajax调用](#模板页面使用-ajax调用)
-    - [手动修改maven项目版本号](#手动修改maven项目版本号)
-    - [附录](#附录)
+  - [多模块 spring boot2.0 项目搭建](#%E5%A4%9A%E6%A8%A1%E5%9D%97-spring-boot20-%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA)
+    - [创建 SpringBoot 2.0 项目](#%E5%88%9B%E5%BB%BA-springboot-20-%E9%A1%B9%E7%9B%AE)
+    - [创建多模块](#%E5%88%9B%E5%BB%BA%E5%A4%9A%E6%A8%A1%E5%9D%97)
+    - [项目启动](#%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8)
+  - [第一个 restful 接口](#%E7%AC%AC%E4%B8%80%E4%B8%AA-restful-%E6%8E%A5%E5%8F%A3)
+    - [定义一个 restful 接口](#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA-restful-%E6%8E%A5%E5%8F%A3)
+    - [RequestMapping 基础用法](#requestmapping-%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95)
+    - [RequestMapping 处理多个 url](#requestmapping-%E5%A4%84%E7%90%86%E5%A4%9A%E4%B8%AA-url)
+    - [RequestMapping 中带参数](#requestmapping-%E4%B8%AD%E5%B8%A6%E5%8F%82%E6%95%B0)
+    - [RequestMapping 中的关键字 required, defaultValue](#requestmapping-%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97-required-defaultvalue)
+    - [RequestMapping 处理各种 HTTP 方法](#requestmapping-%E5%A4%84%E7%90%86%E5%90%84%E7%A7%8D-http-%E6%96%B9%E6%B3%95)
+    - [RequestMapping 通过 url 获取参数](#requestmapping-%E9%80%9A%E8%BF%87-url-%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0)
+    - [RequestMapping 通过 RequestBody 来传递参数](#requestmapping-%E9%80%9A%E8%BF%87-requestbody-%E6%9D%A5%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0)
+    - [RequestMapping 通过 RequestBody 来传递参数 2](#requestmapping-%E9%80%9A%E8%BF%87-requestbody-%E6%9D%A5%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0-2)
+    - [总结](#%E6%80%BB%E7%BB%93)
+  - [如何在 Dao 层与数据库打交道](#%E5%A6%82%E4%BD%95%E5%9C%A8-dao-%E5%B1%82%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%93%E4%BA%A4%E9%81%93)
+    - [使用 SpringBoot 自带的功能快捷的查询数据库数据未完成，先不看](#%E4%BD%BF%E7%94%A8-springboot-%E8%87%AA%E5%B8%A6%E7%9A%84%E5%8A%9F%E8%83%BD%E5%BF%AB%E6%8D%B7%E7%9A%84%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E6%9C%AA%E5%AE%8C%E6%88%90%E5%85%88%E4%B8%8D%E7%9C%8B)
+    - [使用 mybatis 插件帮我们自动生成数据库操作语句](#%E4%BD%BF%E7%94%A8-mybatis-%E6%8F%92%E4%BB%B6%E5%B8%AE%E6%88%91%E4%BB%AC%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5)
+      - [mybatis 自动生成代码插件如何配置使用](#mybatis-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E6%8F%92%E4%BB%B6%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8)
+      - [如果将这些文件加载到 springboot 项目中进行使用](#%E5%A6%82%E6%9E%9C%E5%B0%86%E8%BF%99%E4%BA%9B%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD%E5%88%B0-springboot-%E9%A1%B9%E7%9B%AE%E4%B8%AD%E8%BF%9B%E8%A1%8C%E4%BD%BF%E7%94%A8)
+  - [模板页面使用-第一个模板页面](#%E6%A8%A1%E6%9D%BF%E9%A1%B5%E9%9D%A2%E4%BD%BF%E7%94%A8-%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%A8%A1%E6%9D%BF%E9%A1%B5%E9%9D%A2)
+    - [在 pom.xml 中引入 thymeleaf 等依赖](#%E5%9C%A8-pomxml-%E4%B8%AD%E5%BC%95%E5%85%A5-thymeleaf-%E7%AD%89%E4%BE%9D%E8%B5%96)
+    - [关闭 thymeleaf 缓存](#%E5%85%B3%E9%97%AD-thymeleaf-%E7%BC%93%E5%AD%98)
+    - [创建第一个模板文件](#%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6)
+    - [访问我们的第一个模板页面](#%E8%AE%BF%E9%97%AE%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%A8%A1%E6%9D%BF%E9%A1%B5%E9%9D%A2)
+  - [模板页面使用-查询](#%E6%A8%A1%E6%9D%BF%E9%A1%B5%E9%9D%A2%E4%BD%BF%E7%94%A8-%E6%9F%A5%E8%AF%A2)
+    - [创建查询展示页面](#%E5%88%9B%E5%BB%BA%E6%9F%A5%E8%AF%A2%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2)
+    - [查询数据](#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE)
+    - [浏览列表展示页面](#%E6%B5%8F%E8%A7%88%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2)
+  - [模板页面使用-增、删、改](#%E6%A8%A1%E6%9D%BF%E9%A1%B5%E9%9D%A2%E4%BD%BF%E7%94%A8-%E5%A2%9E%E5%88%A0%E6%94%B9)
+    - [创建一个具有增删改的页面](#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%85%B7%E6%9C%89%E5%A2%9E%E5%88%A0%E6%94%B9%E7%9A%84%E9%A1%B5%E9%9D%A2)
+    - [实现一个删除操作](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C)
+    - [实现一个添加操作](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%BB%E5%8A%A0%E6%93%8D%E4%BD%9C)
+    - [实现一个修改操作](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C)
+  - [手动修改 maven 项目版本号](#%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-maven-%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E5%8F%B7)
+  - [附录](#%E9%99%84%E5%BD%95)
 
 <!-- /TOC -->
 
@@ -42,26 +46,26 @@
 这是一个spring boot的示例项目，用以展示spring boot之美
 ```
 
-## 1.1. 多模块spring boot2.0项目搭建
+## 1.1. 多模块 spring boot2.0 项目搭建
 
 ```text
 创建一个基于spring boot 2.0的多模块maven项目
 ```
 
-### 1.1.1. 创建SpringBoot 2.0项目
+### 1.1.1. 创建 SpringBoot 2.0 项目
 
-1. 打开File -> New -> Project...
-![创建项目1](./pics/项目搭建/创建项目1.png)
-2. 输入包名，项目名 group即为包名 artifact为项目名
-![创建项目2](./pics/项目搭建/创建项目2.png)
-3. spring boot项目由各种依赖组成，可选一些自己想添加的，也可以不添加，后面我们还可以再添加
-![创建项目3](./pics/项目搭建/创建项目3.png)
+1. 打开 File -> New -> Project...
+   ![创建项目1](./pics/项目搭建/创建项目1.png)
+2. 输入包名，项目名 group 即为包名 artifact 为项目名
+   ![创建项目2](./pics/项目搭建/创建项目2.png)
+3. spring boot 项目由各种依赖组成，可选一些自己想添加的，也可以不添加，后面我们还可以再添加
+   ![创建项目3](./pics/项目搭建/创建项目3.png)
 4. 设置好项目名之后，我们的项目就搭建完成了
-![创建项目4](./pics/项目搭建/创建项目4.png)
-5. 一开始，项目是长这样的，我们删除红框中的所有文件，只留下.gitignore pom.xml .idea test-one.iml这几个文件
-![创建项目5](./pics/项目搭建/创建项目5.png)
+   ![创建项目4](./pics/项目搭建/创建项目4.png)
+5. 一开始，项目是长这样的，我们删除红框中的所有文件，只留下.gitignore pom.xml .idea test-one.iml 这几个文件
+   ![创建项目5](./pics/项目搭建/创建项目5.png)
 6. 最终我们的项目变成了这个样子
-记得在pom.xml中如图所示，添加一个打包方式
+   记得在 pom.xml 中如图所示，添加一个打包方式
 
 ```text
 <packaging>pom</packaging>
@@ -77,17 +81,17 @@
 ```
 
 1. 打开模块创建窗口
-![创建项目7](./pics/项目搭建/创建项目7.png)
-2. 我们选择建用maven方式创建模块
-![创建项目8](./pics/项目搭建/创建项目8.png)
+   ![创建项目7](./pics/项目搭建/创建项目7.png)
+2. 我们选择建用 maven 方式创建模块
+   ![创建项目8](./pics/项目搭建/创建项目8.png)
 3. 输入模块名
-![创建项目9](./pics/项目搭建/创建项目9.png)
+   ![创建项目9](./pics/项目搭建/创建项目9.png)
 4. 确认模块所在目录
-![创建项目10](./pics/项目搭建/创建项目10.png)
+   ![创建项目10](./pics/项目搭建/创建项目10.png)
 5. 完成项目创建，模块最终是这样的
-![创建项目11](./pics/项目搭建/创建项目11.png)
-6. 项目最终成型，按相同方法，创建controller, service, dao, common 等模块
-![创建项目12](./pics/项目搭建/创建项目12.png)
+   ![创建项目11](./pics/项目搭建/创建项目11.png)
+6. 项目最终成型，按相同方法，创建 controller, service, dao, common 等模块
+   ![创建项目12](./pics/项目搭建/创建项目12.png)
 
 ### 1.1.3. 项目启动
 
@@ -95,30 +99,30 @@
 项目基础架构已经搭建完成了，之后就是将项目跑起来
 ```
 
-1. 修改项目根pom.xml文件(就是最外面的那个pom文件)，我们另外建了一个controller模块
-![创建项目13](./pics/项目搭建/创建项目13.png)
+1. 修改项目根 pom.xml 文件(就是最外面的那个 pom 文件)，我们另外建了一个 controller 模块
+   ![创建项目13](./pics/项目搭建/创建项目13.png)
 
-2. 在controller模块的pom文件中添加如下内容，其它文件请参阅项目源码
-![创建项目15](./pics/项目搭建/创建项目15.png)
+2. 在 controller 模块的 pom 文件中添加如下内容，其它文件请参阅项目源码
+   ![创建项目15](./pics/项目搭建/创建项目15.png)
 
-3. 修改main模块的pom.xml文件，添加如下内容
-![创建项目13-1](./pics/项目搭建/创建项目13-1.png)
+3. 修改 main 模块的 pom.xml 文件，添加如下内容
+   ![创建项目13-1](./pics/项目搭建/创建项目13-1.png)
 
-4. 在main模块中添加以下3个文件(具体文件内容请自行查看项目源码)
-![创建项目14](./pics/项目搭建/创建项目14.png)
+4. 在 main 模块中添加以下 3 个文件(具体文件内容请自行查看项目源码)
+   ![创建项目14](./pics/项目搭建/创建项目14.png)
 
 5. 启动项目
-![创建项目16](./pics/项目搭建/创建项目16.png)
+   ![创建项目16](./pics/项目搭建/创建项目16.png)
 
-## 1.2. 第一个restful接口
+## 1.2. 第一个 restful 接口
 
 ```text
 SpringBoot项目创建完成之后，可以简单的通过几个注解就完成一个restful接口的定义，我们一起来看一下
 ```
 
-### 1.2.1. 定义一个restful接口
+### 1.2.1. 定义一个 restful 接口
 
-1. 如图，创建一个controller类，并实现一些基础的方法
+1.如图，创建一个 controller 类，并实现一些基础的方法
 
 ```text
 需要说明的是
@@ -137,10 +141,11 @@ http://localhost:8889/ts/test/getSomething
 ```
 
 ![restful1](pics/第一个restful接口/restful1.png)
-2. 我们来尝试一下接口调用
+
+2.我们来尝试一下接口调用
 ![restful2](pics/第一个restful接口/restful2.png)
 
-### 1.2.2. RequestMapping基础用法
+### 1.2.2. RequestMapping 基础用法
 
 ```text
 感觉一下图例中的2个链接的结果我们不难发现，
@@ -150,7 +155,7 @@ http://localhost:8889/ts/test/ 可正常返回结果
 
 ![restful3](pics/第一个restful接口/restful3.png)
 
-### 1.2.3. RequestMapping处理多个url
+### 1.2.3. RequestMapping 处理多个 url
 
 ```code
     /**
@@ -158,7 +163,7 @@ http://localhost:8889/ts/test/ 可正常返回结果
      * http://ip:port/ts/test/get
      * http://ip:port/ts/test/get1
      * http://ip:port/ts/test/get2
-     * 
+     *
      * @return
      */
     @RequestMapping(path = { "get", "get1", "get2" })
@@ -167,15 +172,15 @@ http://localhost:8889/ts/test/ 可正常返回结果
     }
 ```
 
-### 1.2.4. RequestMapping中带参数
+### 1.2.4. RequestMapping 中带参数
 
 ![restful4](pics/第一个restful接口/restful4.png)
 
-### 1.2.5. RequestMapping中的关键字required, defaultValue
+### 1.2.5. RequestMapping 中的关键字 required, defaultValue
 
 ![restful5](pics/第一个restful接口/restful5.png)
 
-### 1.2.6. RequestMapping处理各种HTTP方法
+### 1.2.6. RequestMapping 处理各种 HTTP 方法
 
 ```text
 常用的HTTP METHOD
@@ -187,7 +192,7 @@ http://localhost:8889/ts/test/ 可正常返回结果
 
 ![restful7](pics/第一个restful接口/restful7.png)
 
-### 1.2.7. RequestMapping通过url获取参数
+### 1.2.7. RequestMapping 通过 url 获取参数
 
 ```text
 restful接口的精髓在于通过url来获取参数，如
@@ -200,7 +205,7 @@ http://ip:port/ts/test/get/userinfo/{userId}
 
 ![restful8](pics/第一个restful接口/restful8.png)
 
-### 1.2.8. RequestMapping通过RequestBody来传递参数
+### 1.2.8. RequestMapping 通过 RequestBody 来传递参数
 
 ```text
 restful接口可通过http的body来传递参数，如
@@ -211,7 +216,7 @@ http://localhost:8889/ts/test/getMomoGifts
 
 ![restful10](pics/第一个restful接口/restful10.png)
 
-### 1.2.9. RequestMapping通过RequestBody来传递参数2
+### 1.2.9. RequestMapping 通过 RequestBody 来传递参数 2
 
 ```text
 restful接口可通过http的body来传递参数，如
@@ -224,12 +229,12 @@ http://localhost:8889/ts/test/getMomoGifts2
 
 ![restful12](pics/第一个restful接口/restful12.png)
 
-需要说明的是，json中的key值要与对象中的参数的名字一样才能被识别
+需要说明的是，json 中的 key 值要与对象中的参数的名字一样才能被识别
 
 ```json
 {
-    "userName":"yandongjun",
-    "age":18
+  "userName": "yandongjun",
+  "age": 18
 }
 ```
 
@@ -245,7 +250,7 @@ http://localhost:8889/ts/test/getMomoGifts2
 4. RequestBody传递参数时，Key传要与对象中的属性名称一致才可以被识别
 ```
 
-## 1.3. 如何在Dao层与数据库打交道
+## 1.3. 如何在 Dao 层与数据库打交道
 
 ```text
 本章节，我们地讲解
@@ -254,9 +259,9 @@ http://localhost:8889/ts/test/getMomoGifts2
 3. 如何使用mybatis编写自定义的sql语句
 ```
 
-### 1.3.1. 使用SpringBoot自带的功能快捷的查询数据库数据(未完成，先不看)
+### 1.3.1. 使用 SpringBoot 自带的功能快捷的查询数据库数据(未完成，先不看)
 
-1.首先，我们要在parent模块的pom.xml文件中引入数据库相关的jar包
+1.首先，我们要在 parent 模块的 pom.xml 文件中引入数据库相关的 jar 包
 
 ```text
 <dependency>
@@ -266,18 +271,19 @@ http://localhost:8889/ts/test/getMomoGifts2
 </dependency>
 ```
 
-2.在main模块的application.properties文件中，我们需要配置数据库相关的配置
+2.在 main 模块的 application.properties 文件中，我们需要配置数据库相关的配置
 
 ```text
+
 ```
 
-### 1.3.2. 使用mybatis插件帮我们自动生成数据库操作语句
+### 1.3.2. 使用 mybatis 插件帮我们自动生成数据库操作语句
 
 在开始这一章节之前，我们假设已经完成了数据库的创建，表的创建
 
-#### 1.3.2.1. mybatis自动生成代码插件如何配置使用
+#### 1.3.2.1. mybatis 自动生成代码插件如何配置使用
 
-1.首先，我们在dao层添加一些依赖,先在parent下的pom中进行定义，之后在dao模块进行引用(这里不作赘述，注意版本号)
+1.首先，我们在 dao 层添加一些依赖,先在 parent 下的 pom 中进行定义，之后在 dao 模块进行引用(这里不作赘述，注意版本号)
 
 ```text
        <dependency>
@@ -297,7 +303,7 @@ http://localhost:8889/ts/test/getMomoGifts2
         </dependency>
 ```
 
-2.其次，我们得把Mybatis自动生成文件的插件引用进来
+2.其次，我们得把 Mybatis 自动生成文件的插件引用进来
 
 ```text
     <build>
@@ -324,7 +330,7 @@ http://localhost:8889/ts/test/getMomoGifts2
     </build>
 ```
 
-3.接下来，我们添加插件需要使用到的文件 generatorConfig.xml,观察一下上面插件的引用，里面的configuration
+3.接下来，我们添加插件需要使用到的文件 generatorConfig.xml,观察一下上面插件的引用，里面的 configuration
 配置了这个文件的路径
 
 ```text
@@ -369,7 +375,7 @@ mvn mybatis-generator:generate
 
 ![mybatis](pics/daomybatis插件使用/2.png)
 
-#### 1.3.2.2. 如果将这些文件加载到springboot项目中进行使用
+#### 1.3.2.2. 如果将这些文件加载到 springboot 项目中进行使用
 
 1.先确定自动生成的文件在哪
 
@@ -392,7 +398,7 @@ src/main/resources/sqlmap/tsdb
 ![mybatis](pics/daomybatis插件使用/4.png)
 ![mybatis](pics/daomybatis插件使用/3.png)
 
-2.如何让springboot项目知道这3种文件在哪
+2.如何让 springboot 项目知道这 3 种文件在哪
 
 ```text
 我们直接在这里讲述多数据源的添加
@@ -401,7 +407,7 @@ TsDbConfiguration
 Ts2DbConfiguration
 ```
 
-2.1 在application.properties配置文件中配置数据库信息，如下
+2.1 在 application.properties 配置文件中配置数据库信息，如下
 
 ```text
 不难发现，每个数据库配置都有统一的前缀
@@ -435,21 +441,21 @@ spring.datasource.ts2db.password=dashu0701
 spring.datasource.ts2db.driver-class-name=com.mysql.jdbc.Driver
 ```
 
-2.2 我们回到TsDbConfiguration类
+2.2 我们回到 TsDbConfiguration 类
 
 2.2.1 我们在配置数据源的时候，将配置的前缀加上，数据源就配好了
 
 ![mybatis](pics/数据库配置/1.png)
 
-2.2.2 之后我们要关注的是我们的mapper类的配置
+2.2.2 之后我们要关注的是我们的 mapper 类的配置
 
 ![mybatis](pics/数据库配置/2.png)
 
-2.2.3 然后看一下我们的mapper.xml的配置
+2.2.3 然后看一下我们的 mapper.xml 的配置
 
 ![mybatis](pics/数据库配置/3.png)
 
-2.2.4 到这我们写一个测试类来测试一下(测试类有2种写法，我们这拿junit方式来作讲解)
+2.2.4 到这我们写一个测试类来测试一下(测试类有 2 种写法，我们这拿 junit 方式来作讲解)
 
 ```text
 查看以下类的实现
@@ -467,7 +473,7 @@ TestTsTestWithJunit
 3 创建第一个模板文件
 ```
 
-### 1.4.1. 在pom.xml中引入thymeleaf等依赖
+### 1.4.1. 在 pom.xml 中引入 thymeleaf 等依赖
 
 ```text
 在web模块下的pom.xml文件中我们添加如下依赖
@@ -488,7 +494,7 @@ TestTsTestWithJunit
 </dependency>
 ```
 
-### 1.4.2. 关闭thymeleaf缓存
+### 1.4.2. 关闭 thymeleaf 缓存
 
 ```text
 在application.properties配置文件中我们加入以下配置
@@ -636,17 +642,19 @@ http://localhost:8889/ts/web/HelloWorld
 ```
 
 ### 1.5.3. 浏览列表展示页面
+
 ```text
 1. http://localhost:8889/ts/tsTest/ShowTestInfo
 2. http://localhost:8889/ts/tsTest/ShowTestInfo2
 ```
+
 ![mybatis](pics/模板页面/1.png)
 
 ```text
 3. http://localhost:8889/ts/tsTest/ShowTestInfo3
 ```
-![mybatis](pics/模板页面/2.png)
 
+![mybatis](pics/模板页面/2.png)
 
 ## 1.6. 模板页面使用-增、删、改
 
@@ -715,7 +723,7 @@ AddTemplate.html
 2. 修改页面会自动填充已有数据
 ```
 
-## 1.7. 手动修改maven项目版本号
+## 1.7. 手动修改 maven 项目版本号
 
 ```text
 1、修改版本
@@ -730,4 +738,4 @@ AddTemplate.html
 
 [spring-boot 多模块项目搭建](https://symonlin.github.io/2019/01/15/springboot-1/)
 
-[java项目分层](https://www.jianshu.com/p/9ef2005a0001)
+[java 项目分层](https://www.jianshu.com/p/9ef2005a0001)
