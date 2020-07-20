@@ -1,6 +1,7 @@
 package com.china.test.sample.tsapi.req;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 这是一个自定义的请求参数类
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author yandongjun
  */
 @Data
+@EqualsAndHashCode
 public class MomoGiftReq extends BaseReq {
     /**
      * 添加序列号，为什么要有这个，请查看BaseReq
