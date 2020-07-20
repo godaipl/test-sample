@@ -30,10 +30,8 @@ public class TestController {
     }
 
     /**
-     * http://ip:port/ts/test/
-     * http://ip:port/ts/test/get
-     * http://ip:port/ts/test/get1
-     * http://ip:port/ts/test/get2
+     * http://ip:port/ts/test/ http://ip:port/ts/test/get
+     * http://ip:port/ts/test/get1 http://ip:port/ts/test/get2
      * 
      * @return
      */
@@ -53,7 +51,7 @@ public class TestController {
         return "如果参数名和参数名不一样，需要特殊标明，testId is " + testId;
     }
 
-     /**
+    /**
      * http://localhost:8889/ts/test/getValueById2?testId=1
      * 
      * @param testId
@@ -65,8 +63,7 @@ public class TestController {
     }
 
     /**
-     * required 如果是true 表明这个参数必须带
-     * defaultValue 表示如果不传值，这个参数就是这个值
+     * required 如果是true 表明这个参数必须带 defaultValue 表示如果不传值，这个参数就是这个值
      * http://localhost:8889/ts/test/getValueById3?id=1
      * 
      * @param testId
@@ -102,7 +99,7 @@ public class TestController {
      * 
      * @return
      */
-    @RequestMapping(path = "methodDelete" , method = RequestMethod.DELETE)
+    @RequestMapping(path = "methodDelete", method = RequestMethod.DELETE)
     public String methodDelete() {
         return "HTTP DELETE ";
     }
@@ -169,9 +166,10 @@ public class TestController {
      */
     @PostMapping(path = "getMomoGifts", consumes = "application/json")
     @ResponseBody
-    public BaseResp getMomoGifts(@RequestBody Map<String, Object> map) {
+    @SuppressWarnings("unchecked")
+    public BaseResp<List<Object>> getMomoGifts(@RequestBody Map<String, Object> map) {
         log.info("getMomoGifts map is {}", map);
-        BaseResp baseResp = BaseResp.newBuilder().setCodeAndMsg("0", "OK");
+        BaseResp<List<Object>> baseResp = (BaseResp<List<Object>>) BaseResp.newBuilder().setCodeAndMsg("0", "OK");
         List<Object> objects = new ArrayList<>();
         objects.add("a");
         objects.add("b");
@@ -188,9 +186,10 @@ public class TestController {
      */
     @PostMapping(path = "getMomoGifts2", consumes = "application/json")
     @ResponseBody
-    public BaseResp<Object> getMomoGifts2(@RequestBody MomoGiftReq momoGiftReq) {
+    @SuppressWarnings("unchecked")
+    public BaseResp<List<Object>> getMomoGifts2(@RequestBody MomoGiftReq momoGiftReq) {
         log.info("getMomoGifts momoGiftReq is {}", momoGiftReq);
-        BaseResp baseResp = BaseResp.newBuilder().setCodeAndMsg("0", "OK");
+        BaseResp<List<Object>> baseResp = (BaseResp<List<Object>>) BaseResp.newBuilder().setCodeAndMsg("0", "OK");
         List<Object> objects = new ArrayList<>();
         objects.add("a");
         objects.add("b");

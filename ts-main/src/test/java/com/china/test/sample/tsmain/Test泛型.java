@@ -20,7 +20,7 @@ public class Test泛型 {
      */
     @Test
     public void testList() {
-        List arrayList = new ArrayList<>();
+        List<Object> arrayList = new ArrayList<>();
         arrayList.add("aaaa");
         arrayList.add(100);
 
@@ -59,7 +59,7 @@ public class Test泛型 {
      */
     @Test
     public void testList问号() {
-        List<?> list = new ArrayList<String>();
+        // List<?> list = new ArrayList<String>();
 
     }
 
