@@ -6,6 +6,7 @@ import com.china.test.sample.tsdao.mongodb.test.repository.DemoRepository;
 import com.china.test.sample.tsdao.mongodb.test.domain.Demo;
 import com.china.test.sample.tsservice.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,11 +21,15 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public List<Demo> findDemosByName(String name) {
+        Demo demo = new Demo();
+        demo.setName("aaa");
+//        demoRepository.findAll(demo);
         return demoRepository.findByName(name);
     }
 
     @Override
     public Demo findDemoByName(String name) {
+//        return demoRepository.findByNameLike(name);
         return null;
     }
 
